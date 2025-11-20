@@ -1,0 +1,67 @@
+
+Business Requirements Document (BRD)
+====================================
+
+1. Executive Summary
+--------------------
+ASK_tech is a professional platform designed to empower job seekers and professionals in the Arabic-speaking world by providing AI-driven tools for career development, skill assessment, mock interviews, and resume building. The platform aims to bridge the gap between job market requirements and individual skills.
+
+2. Business Objectives
+----------------------
+- Enable users to assess and improve their skills for better job opportunities.
+- Provide a comprehensive suite of career development tools in Arabic.
+- Facilitate mock interviews and feedback to increase user confidence.
+- Offer resume building and career path guidance.
+- Support administrators in managing users and platform content.
+- Provide a dashboard for users and administrators to visualize key metrics, activities, and progress.
+
+3. Background
+-------------
+The job market in the MENA region is rapidly evolving, with a growing demand for digital skills and career readiness. Many job seekers lack access to structured guidance and assessment tools in their native language. ASK_tech addresses this gap by offering an accessible, AI-powered platform tailored to Arabic speakers.
+
+4. Stakeholders
+---------------
+- Job Seekers: Primary users who benefit from the platform's tools.
+- Employers: Indirect beneficiaries who gain access to better-prepared candidates.
+- Administrators: Manage platform content, users, and analytics.
+- Developers: Maintain and enhance the platform.
+
+5. Business Requirements
+------------------------
+BR1. The platform shall provide user registration and authentication.
+BR2. The platform shall offer skill assessment and gap analysis tools.
+BR3. The platform shall provide mock interview functionality with feedback.
+BR4. The platform shall include a resume builder and export feature.
+BR5. The platform shall recommend career paths based on user profiles.
+BR6. The platform shall support Arabic language and right-to-left (RTL) layout.
+BR7. The platform shall provide analytics and statistics for users and administrators.
+BR8. The platform shall ensure data privacy and security for all users.
+BR9. The platform shall provide a dashboard for users and administrators to view key metrics, recent activities, and personalized insights.
+
+6. Success Metrics
+------------------
+- Number of registered users and active sessions.
+- User satisfaction and feedback ratings.
+- Number of resumes generated and interviews completed.
+- Improvement in user skill assessment scores over time.
+- Dashboard usage and engagement rates.
+
+7. Assumptions and Constraints
+------------------------------
+- Users have access to internet and modern web browsers.
+- The platform will be maintained and updated regularly.
+- Compliance with data protection regulations is required.
+
+8. Risks
+--------
+- Low user adoption due to lack of awareness.
+- Technical challenges in supporting Arabic NLP and AI features.
+- Data privacy and security breaches.
+
+9. Out of Scope
+---------------
+- Direct job placement or recruitment services.
+- Support for languages other than Arabic and English (initially).
+
+---
+This BRD outlines the business goals and requirements for the ASK_tech platform. It should be reviewed and updated as the project evolves.

@@ -1,0 +1,86 @@
+Software Requirements Specification (SRS)
+===========================================
+
+1. Introduction
+---------------
+### 1.1 Purpose
+This document specifies the requirements for the ASK_tech application, a professional platform for career development using artificial intelligence.
+
+### 1.2 Scope
+ASK_tech is a web-based platform that provides tools for skill assessment, mock interviews, resume building, and career guidance, primarily targeting Arabic-speaking users.
+
+### 1.3 Definitions, Acronyms, and Abbreviations
+- SRS: Software Requirements Specification
+- AI: Artificial Intelligence
+- UI: User Interface
+- API: Application Programming Interface
+
+2. Overall Description
+----------------------
+### 2.1 Product Perspective
+ASK_tech is a standalone web application with backend and frontend components. The backend is built with Python (FastAPI), and the frontend uses HTML, CSS, and JavaScript.
+
+### 2.2 Product Features
+- User authentication and registration
+- Skill assessment and gap analysis
+- Mock interviews and interview feedback
+- Resume builder
+- Career path recommendations
+- User statistics and analytics
+
+### 2.3 User Classes and Characteristics
+- Job Seekers: Primary users seeking career development
+- Administrators: Manage platform content and users
+- Testers: Evaluate and test platform features
+
+### 2.4 Operating Environment
+- Web browsers (Chrome, Firefox, Edge)
+- Hosted on cloud or on-premises servers
+
+### 2.5 Design and Implementation Constraints
+- Must support Arabic language and RTL layout
+- Secure handling of user data
+
+### 2.6 User Documentation
+- Online help and guides (see README.md, QUICKSTART_AUTH.md, etc.)
+
+3. Specific Requirements
+------------------------
+### 3.1 Functional Requirements
+- FR1: The system shall allow users to register and log in securely.
+- FR2: The system shall provide skill assessment tests and display results.
+- FR3: The system shall offer mock interview sessions and feedback.
+- FR4: The system shall enable users to build and download resumes.
+- FR5: The system shall recommend career paths based on user data.
+- FR6: The system shall allow administrators to manage users and content.
+
+### 3.2 Non-Functional Requirements
+- NFR1: The system shall support Arabic and English languages.
+- NFR2: The system shall be responsive and accessible on desktop and mobile devices.
+- NFR3: The system shall ensure data privacy and security.
+- NFR4: The system shall handle at least 100 concurrent users.
+
+### 3.3 Interface Requirements
+- Web-based UI with RTL support
+- RESTful API endpoints for frontend-backend communication
+
+4. Other Requirements
+---------------------
+### 4.1 Security
+- All sensitive data must be encrypted in transit and at rest.
+- User authentication must use secure password hashing.
+
+### 4.2 Performance
+- Average response time for API requests should be under 2 seconds.
+
+### 4.3 Reliability & Availability
+- The system should have 99% uptime.
+
+### 4.4 Maintainability
+- Code should follow best practices and be well-documented.
+
+### 4.5 Portability
+- The application should be deployable on Windows and Linux servers.
+
+---
+This SRS is based on the current structure and features of the ASK_tech application. Update as the project evolves.
