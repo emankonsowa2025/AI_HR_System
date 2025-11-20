@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Save HR Assistant Image</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+        .instructions {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            line-height: 1.8;
+        }
+        .code-block {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            margin: 10px 0;
+            overflow-x: auto;
+        }
+        .step {
+            margin: 15px 0;
+            padding-left: 30px;
+            position: relative;
+        }
+        .step::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+        .important {
+            background: rgba(245, 87, 108, 0.3);
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #f5576c;
+            margin: 20px 0;
+        }
+        .step ul {
+            margin-top: 10px;
+        }
+        .feature-list {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎨 HR Assistant Image Setup</h1>
+        
+        <div class="instructions">
+            <h2>📋 Instructions to Add the Image</h2>
+            
+            <div class="step">
+                <strong>Step 1:</strong> Right-click on the HR Assistant image you provided
+            </div>
+            
+            <div class="step">
+                <strong>Step 2:</strong> Select "Save Image As..."
+            </div>
+            
+            <div class="step">
+                <strong>Step 3:</strong> Navigate to this folder:
+                <div class="code-block">D:\asktech\backend\Static\images\</div>
+            </div>
+            
+            <div class="step">
+                <strong>Step 4:</strong> Save the file with the name:
+                <div class="code-block">hr-assistant.jpg</div>
+            </div>
+            
+            <div class="step">
+                <strong>Step 5:</strong> The full path should be:
+                <div class="code-block">D:\asktech\backend\Static\images\hr-assistant.jpg</div>
+            </div>
+        </div>
+
+        <div class="important">
+            <h3>⚠️ Important</h3>
+            <p>Make sure the filename is exactly <strong>hr-assistant.jpg</strong> (lowercase, with hyphen)</p>
+            <p>The image will appear on the welcome page at: <strong>http://127.0.0.1:8001/</strong></p>
+        </div>
+
+        <div class="instructions">
+            <h2>🚀 Testing the Application</h2>
+            
+            <div class="step">
+                <strong>1.</strong> Start the server (if not already running):
+                <div class="code-block">python -m uvicorn backend.app:app --reload --host 127.0.0.1 --port 8001</div>
+            </div>
+            
+            <div class="step">
+                <strong>2.</strong> Open your browser and go to:
+            <div class="step">
+                <strong>3.</strong> You should see the beautiful welcome page with:
+                <ul class="feature-list">
+                    <li>Animated gradient background</li>
+                    <li>Your HR Assistant image (once saved)</li>
+                    <li>Feature cards</li>
+                    <li>"Get Started" and "Sign In" buttons</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="instructions">
+            <h2>🎯 Application Flow</h2>
+            <div class="step">
+                <strong>Welcome Page</strong> (/) → Shows landing page with image
+            </div>
+            <div class="step">
+                <strong>Get Started Button</strong> → Goes to Register page (/register)
+            </div>
+            <div class="step">
+                <strong>Sign In Button</strong> → Goes to Login page (/login)
+            </div>
+            <div class="step">
+                <strong>After Login</strong> → Redirects to Chat Interface (/chat)
+            </div>
+            <div class="step">
+                <strong>Video Interview</strong> → Available in chat interface
+            </div>
+        </div>
+    </div>
+</body>
+</html>
