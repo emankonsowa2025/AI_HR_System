@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>ASK_Tech - Your HR Assistant</title>
+    <title>ITI_New Capital   - GEN AI Project</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <!-- Animated Background -->
+    <div class="background-animation">
+      <div class="gradient-orb orb-1"></div>
+      <div class="gradient-orb orb-2"></div>
+      <div class="gradient-orb orb-3"></div>
+    </div>
+
+    <!-- Welcome Screen -->
+    <div id="welcomeScreen" class="welcome-screen">
+      <div class="welcome-content">
+        <div class="hero-section">
+          <div class="hero-image-container">
+            <img src="images/hr-assistant.jpg" alt="AI HR Assistant" class="hero-image" />
+          </div>
+          <div class="hero-text">
+            <div class="logo-badge">
+              <svg class="logo-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <span>Ask_Tech AI</span>
+            </div>
+            <h1 class="welcome-title">Your Intelligent <span class="gradient-text">HR Assistant</span></h1>
+            <p class="welcome-subtitle">Powered by Advanced AI Technology</p>
+            <p class="welcome-description">Get instant answers about career development, skills assessment, and personalized job recommendations powered by cutting-edge artificial intelligence</p>
+        
+        <div class="feature-cards">
+          <div class="feature-card">
+            <div class="feature-icon">💼</div>
+            <h3>Career Guidance</h3>
+            <p>Expert advice for your professional growth</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">🎯</div>
+            <h3>Skills Analysis</h3>
+            <p>Discover your strengths and opportunities</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">🚀</div>
+            <h3>Job Matching</h3>
+            <p>Find roles that fit your profile perfectly</p>
+          </div>
+        </div>
+
+        <button id="getStartedBtn" class="get-started-btn">
+          <span>Get Started</span>
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Main Chat Interface -->
+    <main class="chat-app" id="chatApp">
+      <div class="chat-header">
+        <div class="header-left">
+          <div class="logo-mini">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2"/>
+              <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2"/>
+              <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2"/>
+            </svg>
+          </div>
+          <div>
+            <h1>AskTech <span class="beta-badge">AI</span></h1>
+            <p class="status"><span class="status-dot"></span> Online & Ready</p>
+          </div>
+        </div>
+        <div class="header-actions">
+          <button class="icon-btn" id="clearChat" title="Clear Chat">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <path d="M2.5 5H17.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              <path d="M8.33334 9.16667V14.1667" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              <path d="M11.6667 9.16667V14.1667" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              <path d="M3.33334 5L4.16668 16.6667C4.16668 17.5833 4.91668 18.3333 5.83334 18.3333H14.1667C15.0833 18.3333 15.8333 17.5833 15.8333 16.6667L16.6667 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              <path d="M7.5 5V3.33333C7.5 2.41667 8.25 1.66667 9.16667 1.66667H10.8333C11.75 1.66667 12.5 2.41667 12.5 3.33333V5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <section id="history" class="history">
+        <div class="empty-state">
+          <div class="empty-icon">💬</div>
+          <h3>Start Your Conversation</h3>
+          <p>Ask me anything about your career, skills, or job opportunities</p>
+          <div class="quick-prompts">
+            <button class="prompt-chip" data-prompt="What skills should I develop for a data scientist role?">📊 Skills for Data Science</button>
+            <button class="prompt-chip" data-prompt="Can you analyze my skills and suggest suitable jobs?">🎯 Analyze My Skills</button>
+            <button class="prompt-chip" data-prompt="What are the latest trends in software development?">💻 Tech Trends</button>
+          </div>
+        </div>
+      </section>
+
+      <div class="composer">
+        <div class="composer-inner">
+          <button id="speech" class="speech-btn" title="Voice Input">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <path d="M10 1.66667V11.6667" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              <path d="M13.3333 5.83333V10C13.3333 11.8333 11.8333 13.3333 10 13.3333C8.16666 13.3333 6.66666 11.8333 6.66666 10V5.83333C6.66666 4 8.16666 2.5 10 2.5C11.8333 2.5 13.3333 4 13.3333 5.83333Z" stroke="currentColor" stroke-width="1.5"/>
+              <path d="M15.8333 9.16667V10C15.8333 13.2167 13.2167 15.8333 10 15.8333C6.78333 15.8333 4.16666 13.2167 4.16666 10V9.16667" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              <path d="M10 15.8333V18.3333" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </button>
+          <textarea id="message" placeholder="Type your question here..."></textarea>
+          <button id="send" class="send-btn" title="Send Message">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <path d="M18.3333 1.66667L9.16666 10.8333" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M18.3333 1.66667L12.5 18.3333L9.16666 10.8333L1.66666 7.5L18.3333 1.66667Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+        <div class="typing-indicator" id="typingIndicator">
+          <span></span><span></span><span></span>
+        </div>
+      </div>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
