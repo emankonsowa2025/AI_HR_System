@@ -1,0 +1,38 @@
+{
+  "python": {
+    "titles": ["Backend Engineer", "Python Developer", "Data Engineer"],
+    "questions": [
+      "Explain list comprehensions and provide an example.",
+      "How does Python's GIL affect multithreading?",
+      "Describe how you'd optimize a slow Python function."
+    ]
+  },
+  "sql": {
+    "titles": ["Data Engineer", "Database Developer", "Backend Engineer"],
+    "questions": [
+      "Write a query to find duplicate rows in a table.",
+      "Explain transaction isolation levels.",
+      "How would you optimize a slow JOIN?"
+    ]
+  },
+  "javascript": {
+    "titles": ["Frontend Engineer", "Fullstack Engineer"],
+    "questions": [
+      "Explain event loop and async behavior in JavaScript.",
+      "What's the difference between == and ===?",
+      "How do you optimize page load performance?"
+    ]
+  },
+  "react": {
+    "titles": ["Frontend Engineer", "React Developer"],
+    "questions": [
+      "Explain hooks and give an example using useEffect.",
+      "How do you manage component state vs global state?",
+      "How do you optimize rendering performance in React?"
+    ]
+  },
+  "default": {
+    "titles": ["Software Engineer"],
+    "questions": ["Tell me about a project that demonstrates your core skills."]
+  }
+}

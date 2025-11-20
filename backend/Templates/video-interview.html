@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <title>مقابلة شخصية مع مساعدك الذكي – AskTech</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="{{ request.url_for('static', path='style.css') }}"
+    />
+  </head>
+  <body>
+    <div class="background-orbs">
+      <div class="orb orb-purple"></div>
+      <div class="orb orb-pink"></div>
+      <div class="orb orb-blue"></div>
+    </div>
+
+    <header class="top-navbar">
+      <div class="navbar-content">
+        <div class="navbar-brand">
+          <span class="brand-logo">🤖</span>
+          <span class="brand-name">
+            Ask<span class="brand-ai">Tech</span>
+          </span>
+        </div>
+        <div class="navbar-actions">
+          <button
+            id="backToHomeBtn"
+            class="eval-btn-nav"
+            type="button"
+            title="العودة للرئيسية"
+          >
+            <span class="eval-icon">←</span>
+            <span>الرجوع للصفحة الرئيسية</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main class="chat-app video-interview-main">
+      <div class="video-container-large">
+        <div class="video-header-bar">
+          <div class="video-title">
+            <span class="video-title-icon">🎥</span>
+            <span>مقابلة شخصية مباشرة مع مساعدك الذكي</span>
+          </div>
+          <div class="video-status-badge">
+            <span class="status-dot"></span>
+            <span>متصل</span>
+          </div>
+        </div>
+
+        <div class="video-meta">
+          <div class="timer-pill">
+            ⏱️ <span id="interviewTimer">00:00</span>
+          </div>
+          <div class="progress-wrapper">
+            <div class="progress-label">
+              السؤال <span id="currentQuestionNumber">0</span> من 
+              <span id="totalQuestions">0</span>
+            </div>
+            <div class="progress-bar">
+              <div id="progressFill" class="progress-fill"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="video-streams-large">
+          <section class="video-stream-large interviewer-side">
+            <div class="interviewer-video-feed">
+              <div class="video-live-badge">
+                <span class="live-dot"></span>
+                <span>LIVE</span>
+              </div>
+              <div class="video-name-tag">
+                <span class="name-icon">🤖</span>
+                <span>AskTech – المُقابِل الذكي</span>
+              </div>
+              <video
+                class="interviewer-video"
+                id="interviewerVideoFeed"
+                autoplay
+                muted
+                loop
+                playsinline
+                webkit-playsinline
+                moz-playsinline
+              ></video>
+            </div>
+          </section>
+
+          <section class="video-stream-large user-side">
+            <div class="video-name-tag">
+              <span class="name-icon">🙋</span>
+              <span>أنت</span>
+            </div>
+            <video
+              id="userVideo"
+              autoplay
+              muted
+              playsinline
+              webkit-playsinline
+              moz-playsinline
+            ></video>
+            <div class="video-label-large">
+              🧑‍💼 بث الكاميرا الشخصية
+            </div>
+          </section>
+        </div>
+
+        <section class="transcript-panel">
+          <div class="transcript-header">
+            <span class="transcript-icon">📝</span>
+            <span>نص المقابلة المباشر</span>
+          </div>
+          <div id="interviewTranscript" class="interview-transcript">
+            <div class="t-row system">
+              مرحباً! هذه مساحة عرض نص المقابلة. سيظهر هنا كل ما تقوله أنت والمساعد أثناء المقابلة.
+            </div>
+          </div>
+        </section>
+
+        <section class="interview-controls-panel">
+          <div class="interview-question-display" id="currentQuestion">
+            <span class="question-icon">❓</span>
+            <span>انتظر بدء المقابلة...</span>
+          </div>
+          <div class="interview-actions-bar">
+            <button
+              class="interview-btn-modern primary"
+              id="startInterviewBtn"
+              type="button"
+            >
+              <span class="btn-icon">▶️</span>
+              <span>ابدأ المقابلة</span>
+            </button>
+            <button
+              class="interview-btn-modern danger"
+              id="endInterviewBtn"
+              type="button"
+            >
+              <span class="btn-icon">⏹</span>
+              <span>إنهاء المقابلة</span>
+            </button>
+          </fieldset>
+        </section>
+      </div>
+    </main>
+
+    <script>
+      // Utility functions and variables
+      const backBtn = document.getElementById("backToHomeBtn");
+      if (backBtn) {
+        backBtn.addEventListener("click", () => {
+          window.location.href = "{{ request.url_for('home') }}";
+        });
+      }
+
+      const startBtn = document.getElementById("startInterviewBtn");
+      const endBtn = document.getElementById("endInterviewBtn");
+      const transcriptEl = document.getElementById("interviewTranscript");
+      const questionBox = document.getElementById("currentQuestion");
+      const currentNumEl = document.getElementById("currentQuestionNumber");
+      const totalNumEl = document.getElementById("totalQuestions");
+      const progressFillEl = document.getElementById("progressFill");
+      const timerEl = document.getElementById("interviewTimer");
+
+      let questions = [];
+      let currentIndex = 0;
+      let interviewActive = false;
+      let timerInterval = null;
+      let startTime = null;
+      let answersCount = 0;
+
+      const questionTemplates = {
+        "تعليم": [
+          "ما هي فلسفتك في التعليم وكيف تطبقها في الصف؟",
+          "كيف تتعامل مع الطلاب ذوي الاحتياجات الخاصة؟",
+          "ما هي الطرق التي تستخدمها لتحفيز الطلاب؟",
+          "كيف تدمج التكنولوجيا في عملية التعليم؟",
+          "صف موقفًا صعبًا واجهته في التدريس وكيف تعاملت معه؟",
+          "ما هي استراتيجيتك لتقييم أداء الطلاب؟",
+          "كيف تتعامل مع الفروق الفردية بين الطلاب؟"
+        ],
+        "صيدلة": [
+          "ما هي خبرتك في صرف الأدوية والتعامل مع الوصفات الطبية؟",
+          "كيف تواكب أحدث التطورات في مجال الأدوية؟",
+          "اشرح كيفية التعامل مع تفاعلات الأدوية المحتملة.",
+          "كيف تقدم استشارات دوائية للمرضى؟",
+          "ما هي الإجراءات التي تتبعها لضمان دقة صرف الدواء؟",
+          "كيف تتعامل مع حالات الطوارئ الدوائية؟",
+          "ما هي مهارات التواصل المهمة في الصيدلة؟"
+        ],
+        "تكنولوجيا المعلومات": [
+          "ما هي خبرتك في إدارة أنظمة المعلومات والشبكات؟",
+          "كيف تتعامل مع مشكلات الأمان السيبراني؟",
+          "اشرح مشروعًا تقنيًا عملت عليه مؤخرًا.",
+          "ما هي لغات البرمجة أو الأدوات التي تتقنها؟",
+          "كيف تواكب التطورات السريعة في مجال تكنولوجيا المعلومات؟",
+          "كيف تنظم بيئة العمل لتكون فعالة في مشاريع IT؟",
+          "ما هو أكبر تحدٍ تقني واجهته وكيف حللته؟"
+        ],
+        "ذكاء اصطناعي": [
+          "ما هي خبرتك في بناء نماذج الذكاء الاصطناعي؟",
+          "اشرح الفرق بين التعلم العميق والتعلم التقليدي.",
+          "ما هي الأدوات أو المكتبات التي تفضلها في مشاريع الذكاء الاصطناعي؟",
+          "كيف تتعامل مع مشكلة overfitting في النماذج؟",
+          "صف تطبيقًا عمليًا للذكاء الاصطناعي قمت بتنفيذه.",
+          "كيف تختار خوارزمية تناسب مشروعك؟",
+          "ما هي أهم الاتجاهات الحالية في الذكاء الاصطناعي والتي تثير اهتمامك؟"
+        ]
+      };
+
+      const domainSynonyms = {
+        "تعليم": ["تعليم","تدريس","مدرسة","معلم","تربية"],
+        "صيدلة": ["صيدلة","صيدلي","دواء","أدوية"],
+        "تكنولوجيا المعلومات": ["تكنولوجيا المعلومات","معلومات","حاسب","كمبيوتر","IT","تقنية"],
+        "ذكاء اصطناعي": ["ذكاء اصطناعي","ذكاء صناعي","AI","تعلم الآلة"]
+      };
+
+      function appendTranscript(role, text) {
+        const row = document.createElement("div");
+        row.className = "t-row " + (role === 'user' ? 'user' : 'assistant');
+        row.textContent = (role === 'user' ? '🧑: ' : '🤖: ') + text;
+        transcriptEl.appendChild(row);
+        transcriptEl.scrollTop = transcriptEl.scrollHeight;
+      }
+
+      function speakText(text, lang='ar-SA') {
+        return new Promise(resolve => {
+          const utter = new SpeechSynthesisUtterance(text);
+          utter.lang = lang;
+          utter.onend = () => resolve();
+          window.speechSynthesis.speak(utter);
+        });
+      }
+
+      function listenAnswer(timeoutMs = 40000) {
+        return new Promise((resolve, reject) => {
+          const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+          if (!SpeechRecognition) {
+            return reject(new Error('التعرف على الصوت غير مدعوم في هذا المتصفح'));
+          }
+          const recognition = new SpeechRecognition();
+          recognition.continuous = false;
+          recognition.interimResults = false;
+          recognition.lang = 'ar-SA';
+          recognition.maxAlternatives = 1;
+
+          let answered = false;
+          const timerId = setTimeout(() => {
+            answered = true;
+            recognition.stop();
+            resolve(null);
+          }, timeoutMs);
+
+          recognition.onresult = (event) => {
+            if (answered) return;
+            clearTimeout(timerId);
+            answered = true;
+            recognition.stop();
+            const text = event.results[0][0].transcript.trim();
+            resolve(text);
+          };
+
+          recognition.onerror = (event) => {
+            if (answered) return;
+            clearTimeout(timerId);
+            answered = true;
+            recognition.stop();
+            reject(new Error('خطأ في التعرف على الصوت: ' + event.error));
+          };
+
+          recognition.onend = () => {
+            if (!answered && interviewActive) {
+              // Recognizer ended unexpectedly: restart it
+              recognition.start();
+            }
+          };
+
+          recognition.start();
+        });
+      }
+
+      function shuffleArray(arr) {
+        for (let i = arr.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [arr[i], arr[j]] = [arr[j], arr[i]];
+        }
+        return arr;
+      }
+
+      function determineDomainFromText(text) {
+        const lower = text.replace(/\s+/g,'').toLowerCase();
+        for (const [key, syns] of Object.entries(domainSynonyms)) {
+          for (const s of syns) {
+            if (lower.includes(s.replace(/\s+/g,'').toLowerCase())) {
+              return key;
+            }
+          }
+        }
+        return null;
+      }
+
+      function updateProgress() {
+        currentNumEl.textContent = currentIndex + 1;
+        totalNumEl.textContent = questions.length;
+        const percent = ((currentIndex) / questions.length) * 100;
+        progressFillEl.style.width = percent + '%';
+      }
+
+      function startTimer() {
+        startTime = Date.now();
+        timerEl.textContent = "00:00";
+        timerInterval = setInterval(() => {
+          const diff = Date.now() - startTime;
+          const m = String(Math.floor(diff/60000)).padStart(2,'0');
+          const s = String(Math.floor((diff%60000)/1000)).padStart(2,'0');
+          timerEl.textContent = `${m}:${s}`;
+        }, 1000);
+      }
+
+      function stopTimer() {
+        clearInterval(timerInterval);
+      }
+
+      async function conductInterview(domainKey) {
+        questions = shuffleArray(questionTemplates[domainKey]).slice(0,8);
+        interviewActive = true;
+        answersCount = 0;
+        currentIndex = 0;
+        startTimer();
+        updateProgress();
+
+        await speakText("سنبدأ الآن المقابلة في مجال " + domainKey + ".");
+        appendTranscript('assistant', "سنبدأ الآن المقابلة في مجال " + domainKey + ".");
+
+        while (interviewActive && currentIndex < questions.length) {
+          updateProgress();
+          const q = questions[currentIndex];
+          questionBox.innerHTML = `<span class="question-icon">❓</span><span>${q}</span>`;
+          await speakText(q);
+          appendTranscript('assistant', q);
+
+          try {
+            const answer = await listenAnswer();
+            if (answer !== null) {
+              appendTranscript('user', answer);
+              answersCount++;
+            } else {
+              appendTranscript('assistant', 'لم يتم استلام إجابة ضمن المهلة، ننتقل للسؤال التالي.');
+            }
+          } catch(err) {
+            appendTranscript('assistant', 'حدث خطأ أثناء التعرف على الصوت: ' + err.message);
+          }
+
+          currentIndex++;
+        }
+
+        stopTimer();
+        interviewActive = false;
+
+        const percent = Math.round((answersCount / questions.length) * 100);
+        let evalMsg = "";
+        if (percent === 100) {
+          evalMsg = `أداء ممتاز! لقد أجبت على جميع الأسئلة (٪${percent}).`;
+        } else if (percent >= 80) {
+          evalMsg = `أداء جيد جدًا. (٪${percent})`;
+        } else if (percent >= 50) {
+          evalMsg = `مستوى متوسط. (٪${percent})`;
+        } else {
+          evalMsg = `نوصي بالتحضير أكثر للمقابلات القادمة. (٪${percent}).`;
+        }
+
+        questionBox.innerHTML = `<span class="question-icon">✅</span><span>انتهت المقابلة. ${evalMsg}</span>`;
+        appendTranscript('assistant', "انتهت المقابلة. " + evalMsg);
+        await speakText("انتهت المقابلة. " + evalMsg);
+      }
+
+      startBtn.addEventListener("click", async () => {
+        if (interviewActive) return;
+        transcriptEl.innerHTML = '';
+        questionBox.innerHTML = `<span class="question-icon">❓</span><span>ما هو التخصص الذي تريد المقابلة فيه؟</span>`;
+        await speakText("ما هو التخصص الذي تريد المقابلة فيه؟");
+        appendTranscript('assistant', "ما هو التخصص الذي تريد المقابلة فيه؟");
+
+        try {
+          const speciality = await listenAnswer();
+          appendTranscript('user', speciality);
+          const domainKey = determineDomainFromText(speciality) || "ذكاء اصطناعي";
+          await conductInterview(domainKey);
+        } catch(err) {
+          appendTranscript('assistant', "لم أتمكن من سماع التخصص، سيتم استخدام الذكاء الاصطناعي تلقائيًا.");
+          await speakText("لم أتمكن من سماع التخصص، سيتم استخدام الذكاء الاصطناعي تلقائيًا.");
+          await conductInterview("ذكاء اصطناعي");
+        }
+      });
+
+      endBtn.addEventListener("click", () => {
+        if (!interviewActive) return;
+        interviewActive = false;
+        stopTimer();
+        questionBox.innerHTML = `<span class="question-icon">✅</span><span>تم إيقاف المقابلة.</span>`;
+        appendTranscript('assistant', "تم إيقاف المقابلة.");
+      });
+
+      (async () => {
+        const videoElement = document.getElementById("userVideo");
+        if (!videoElement || !navigator.mediaDevices) return;
+        try {
+          const stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: false });
+          videoElement.srcObject = stream;
+        } catch (err) {
+          console.error("Error accessing camera:", err);
+        }
+      })();
+    </script>
+  </body>
+</html>

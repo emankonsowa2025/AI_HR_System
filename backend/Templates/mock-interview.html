@@ -1,0 +1,597 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>محاكي المقابلات - ASK_Tech</title>
+     <title>Mock_Interview - ASK_Tech</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Tajawal', 'Cairo', sans-serif;
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        .top-nav {
+            background: rgba(255, 255, 255, 0.2);
+            -webkit-backdrop-filter: blur(20px);
+            backdrop-filter: blur(20px);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: white;
+        }
+        .back-btn {
+            padding: 0.75rem 1.5rem;
+            background: rgba(255, 255, 255, 0.3);
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            border-radius: 12px;
+            color: white;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.4);
+            transform: translateY(-2px);
+        }
+        .container {
+            max-width: 100%;
+            margin: 0;
+            padding: 2rem 3rem;
+            flex: 1;
+        }
+        .hero {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        .hero-icon {
+            font-size: 5rem;
+            margin-bottom: 1rem;
+        }
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 900;
+            color: white;
+            margin-bottom: 1rem;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+        .hero p {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.95);
+        }
+        .setup-section {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 24px;
+            padding: 3rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+            max-width: 1400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .setup-section h2 {
+            font-size: 2rem;
+            color: #333;
+            margin-bottom: 1.5rem;
+        }
+        .input-wrapper {
+            margin-bottom: 1.5rem;
+        }
+        .input-wrapper label {
+            display: block;
+            color: #333;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        .input-wrapper input, .input-wrapper select {
+            width: 100%;
+            padding: 1rem;
+            border-radius: 10px;
+            border: 2px solid #e0e0e0;
+            font-family: 'Tajawal', sans-serif;
+            transition: all 0.3s ease;
+        }
+        .input-wrapper input:focus, .input-wrapper select:focus {
+            outline: none;
+            border-color: #a8edea;
+            box-shadow: 0 0 0 4px rgba(168, 237, 234, 0.2);
+        }
+        .start-btn {
+            width: 100%;
+            padding: 1.3rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            border-radius: 12px;
+            color: white;
+            font-size: 1.3rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .start-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(102, 126, 234, 0.5);
+        }
+        .interview-area {
+            display: none;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 24px;
+            padding: 3rem;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+            min-height: calc(100vh - 200px);
+        }
+        .interview-area.active { display: block; }
+        .question-box {
+            background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
+            padding: 2rem;
+            border-radius: 16px;
+            margin-bottom: 2rem;
+            border-right: 4px solid #667eea;
+        }
+        .question-text {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 1rem;
+        }
+        .answer-input {
+            width: 100%;
+            min-height: 150px;
+            padding: 1rem;
+            border-radius: 12px;
+            border: 2px solid #e0e0e0;
+            font-family: 'Tajawal', sans-serif;
+            font-size: 1rem;
+            resize: vertical;
+        }
+        .answer-input:focus {
+            outline: none;
+            border-color: #a8edea;
+        }
+        .controls {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        .btn {
+            flex: 1;
+            padding: 1rem;
+            border: none;
+            border-radius: 10px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            color: #333;
+        }
+        .btn-secondary {
+            background: #f0f0f0;
+            color: #333;
+        }
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+        }
+        .feedback-box {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-top: 1.5rem;
+            border-right: 4px solid #43e97b;
+            display: none;
+        }
+        .feedback-box h4 {
+            color: #43e97b;
+            margin-bottom: 0.8rem;
+        }
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 2rem;
+        }
+        .loading.active { display: block; }
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid #f0f0f0;
+            border-top-color: #667eea;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        .brand-underscore {
+            color: #fed6e3;
+        }
+        .question-number {
+            color: #667eea;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        .answer-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #333;
+        }
+        .results-title {
+            text-align: center;
+            color: #43e97b;
+            margin-bottom: 2rem;
+        }
+        .results-summary {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #666;
+        }
+        .results-actions {
+            text-align: center;
+            margin-top: 2rem;
+        }
+        .question-number-inline {
+            color: #667eea;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        .answer-label-inline {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #333;
+        }
+        .results-title-inline {
+            text-align: center;
+            color: #43e97b;
+            margin-bottom: 2rem;
+        }
+        .results-summary-inline {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #666;
+        }
+        .results-actions-inline {
+            text-align: center;
+            margin-top: 2rem;
+        }
+        .results-completion {
+            text-align: center;
+            color: #43e97b;
+            margin-bottom: 2rem;
+        }
+        .results-stats {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #666;
+        }
+        .results-retry {
+            text-align: center;
+            margin-top: 2rem;
+        }
+    </style>
+        <div class="nav-brand">
+            <span>🚀</span>
+            <span>ASK<span class="brand-underscore">_</span>tech</span>
+        </div>
+        <button class="back-btn" onclick="sessionStorage.setItem('scrollToTop', 'true'); window.location.href='/home'">← العودة للرئيسية</button>
+    </nav>
+
+    <div class="container">
+        <div class="hero">
+            <div class="hero-icon">🎤</div>
+            <h1>محاكي المقابلات الذكي</h1>
+             <h1>Mock_Interview - ASK_Tech</h1>
+            <p>تدرب على مقابلات العمل الحقيقية مع محاكي ذكي يقدم لك أسئلة وتقييمات فورية</p>
+        </div>
+
+        <div class="interview-area" id="interviewArea">
+            <div class="question-box">
+                <div class="question-number-inline">
+                    سؤال <span id="currentQ">1</span> من <span id="totalQ">5</span>
+                </div>
+                <div class="question-text" id="questionText">السؤال سيظهر هنا...</div>
+            </div>
+            
+            <label class="answer-label-inline">إجابتك:</label>
+            <textarea class="answer-input" id="answerInput" placeholder="اكتب إجابتك هنا..."></textarea>
+                    <option value="medium" selected>متوسط - أسئلة تقنية وسلوكية</option>
+        <div class="interview-area" id="interviewArea">
+            <div class="question-box">
+                <div class="question-number">
+                    سؤال <span id="currentQ">1</span> من <span id="totalQ">5</span>
+                </div>
+                <div class="question-text" id="questionText">السؤال سيظهر هنا...</div>
+            </div>
+            
+            <label class="answer-label">إجابتك:</label>
+            <textarea class="answer-input" id="answerInput" placeholder="اكتب إجابتك هنا..."></textarea>
+            </div>
+            <button class="start-btn" onclick="startInterview()">🚀 ابدأ المقابلة</button>
+        </div>
+
+        <div class="interview-area" id="interviewArea">
+            <div class="question-box">
+                <div class="question-number">
+                    سؤال <span id="currentQ">1</span> من <span id="totalQ">5</span>
+                </div>
+                <div class="question-text" id="questionText">السؤال سيظهر هنا...</div>
+            </div>
+            
+            <label class="answer-label">إجابتك:</label>
+            <textarea class="answer-input" id="answerInput" placeholder="اكتب إجابتك هنا..."></textarea>
+            
+            <div class="controls">
+                <button class="btn btn-primary" onclick="submitAnswer()">✅ إرسال الإجابة</button>
+                <button class="btn btn-secondary" onclick="skipQuestion()">⏭️ تخطي</button>
+            </div>
+
+            <div class="loading" id="loading">
+                <div class="spinner"></div>
+                <p>جارِ تقييم إجابتك...</p>
+            </div>
+            <div class="feedback-box" id="feedbackBox">
+                <h4>💡 تقييم الإجابة</h4>
+                <p id="feedbackText"></p>
+            </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let questions = [];
+        let currentIndex = 0;
+        let answers = [];
+
+        async function clearServerHistory() {
+            try {
+                const token = localStorage.getItem('access_token');
+                await fetch('/api/history', {
+                    method: 'DELETE',
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+            } catch (error) {
+                console.error('Error clearing history:', error);
+            }
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            // Check if this is the first load of this page
+            const pageKey = 'mockinterview_loaded';
+            if (!sessionStorage.getItem(pageKey)) {
+                // Mark as loaded and refresh to clear everything
+                sessionStorage.setItem(pageKey, 'true');
+                location.reload();
+            } else {
+                // Clear server history on subsequent loads
+                clearServerHistory();
+            }
+        });
+        
+        function extractQuestionsFromText(text, jobTitle, count) {
+            const questions = [];
+            const lines = text.split('\n');
+            
+            for (let line of lines) {
+                line = line.trim();
+                // Match lines starting with number followed by . or )
+                if (line.match(/^\d+[\.\)]/)) {
+                    const question = line.replace(/^\d+[\.\)]\s*/, '');
+                    if (question.length > 10) {
+                        questions.push(question);
+                    }
+                }
+            }
+            
+            console.log('Extracted questions from text:', questions);
+            return questions.slice(0, parseInt(count));
+        }
+
+        async function startInterview() {
+            const jobTitle = document.getElementById('jobTitle').value;
+            const difficulty = document.getElementById('difficulty').value;
+            const questionCount = document.getElementById('questionCount').value;
+
+            if (!jobTitle) {
+                alert('الرجاء إدخال المسمى الوظيفي');
+                return;
+            }
+
+            document.getElementById('loading').classList.add('active');
+            
+            try {
+                const token = localStorage.getItem('access_token');
+                
+                if (!token) {
+                    alert('يجب تسجيل الدخول أولاً');
+                    window.location.href = '/login';
+                    return;
+                }
+                
+                console.log('Starting interview with:', jobTitle, difficulty, questionCount);
+                const prompt = `You are an interview simulator. Generate ${questionCount} interview questions in JSON format ONLY.
+
+Job Title: ${jobTitle}
+Difficulty: ${difficulty}
+
+CRITICAL: You MUST respond with ONLY valid JSON, nothing else. No explanations, no text.
+
+Required JSON structure:
+{
+    "questions": ["Question 1 in Arabic", "Question 2 in Arabic", "Question 3 in Arabic"]
+}
+
+Example for Software Developer:
+{
+    "questions": ["أخبرني عن نفسك وخبراتك البرمجية", "ما هي لغات البرمجة التي تجيدها؟", "كيف تتعامل مع Debugging؟"]
+}
+
+NOW generate ${questionCount} ${difficulty} questions for: ${jobTitle}
+REMEMBER: JSON ONLY!`;
+
+                const response = await fetch('/api/chat', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: JSON.stringify({ message: prompt, use_nim: false })
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                const data = await response.json();
+                console.log('API Response (Start Interview):', data);
+
+                if (!data.response) {
+                    throw new Error('لم يتم استلام استجابة من الخادم');
+                }
+
+                console.log('Response text:', data.response);
+                
+                const jsonMatch = data.response.match(/\{[\s\S]*\}/);
+                console.log('JSON Match:', jsonMatch);
+                
+                if (jsonMatch) {
+                    try {
+                        const parsed = JSON.parse(jsonMatch[0]);
+                        questions = parsed.questions || [];
+                        console.log('Parsed questions:', questions);
+                    } catch (e) {
+                        console.error('Failed to parse JSON:', e);
+                        questions = extractQuestionsFromText(data.response, jobTitle, questionCount);
+                    }
+                } else {
+                    console.log('No JSON found, extracting from text');
+                    questions = extractQuestionsFromText(data.response, jobTitle, questionCount);
+                }
+                
+                if (questions.length === 0) {
+                    questions = [`أخبرني عن نفسك وخبراتك في مجال ${jobTitle}`, `ما هي نقاط قوتك وضعفك؟`, `لماذا تريد العمل معنا؟`];
+                }
+                
+                console.log('Final questions array:', questions);
+
+                document.getElementById('setupSection').style.display = 'none';
+                document.getElementById('interviewArea').classList.add('active');
+                document.getElementById('totalQ').textContent = questions.length;
+                loadQuestion();
+
+            } catch (error) {
+                console.error('Error:', error);
+                alert('حدث خطأ. الرجاء المحاولة مرة أخرى.');
+            } finally {
+                document.getElementById('loading').classList.remove('active');
+            }
+        }
+
+        function loadQuestion() {
+            if (currentIndex >= questions.length) {
+                showResults();
+                return;
+            }
+
+            document.getElementById('currentQ').textContent = currentIndex + 1;
+            document.getElementById('questionText').textContent = questions[currentIndex];
+            document.getElementById('answerInput').value = '';
+            document.getElementById('feedbackBox').style.display = 'none';
+        }
+
+        async function submitAnswer() {
+            const answer = document.getElementById('answerInput').value;
+            
+            if (!answer.trim()) {
+                alert('الرجاء كتابة إجابة');
+                return;
+            }
+
+            document.getElementById('loading').classList.add('active');
+
+            try {
+                const token = localStorage.getItem('access_token');
+                const prompt = `قيّم هذه الإجابة للسؤال: "${questions[currentIndex]}"
+
+الإجابة: ${answer}
+
+قدم تقييماً مختصراً (3-4 أسطر) يشمل النقاط الإيجابية ومجالات التحسين.`;
+
+                const response = await fetch('/api/chat', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: JSON.stringify({ message: prompt, use_nim: false })
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                const data = await response.json();
+                console.log('API Response (Submit Answer):', data);
+
+                if (!data.response) {
+                    throw new Error('لم يتم استلام استجابة من الخادم');
+                }
+
+                answers.push({ question: questions[currentIndex], answer: answer, feedback: data.response });
+                
+                document.getElementById('feedbackBox').style.display = 'block';
+                document.getElementById('feedbackText').textContent = data.response;
+
+                setTimeout(() => {
+                    currentIndex++;
+                    loadQuestion();
+                }, 4000);
+            } catch (error) {
+                console.error('Error:', error);
+                alert('حدث خطأ أثناء إرسال الإجابة. الرجاء المحاولة مرة أخرى.');
+            } finally {
+                document.getElementById('loading').classList.remove('active');
+            }
+        }
+        
+        function showResults() {
+            document.getElementById('interviewArea').innerHTML = `
+                <h2 class="results-completion">🎉 أحسنت! أكملت المقابلة</h2>
+                <p class="results-stats">لقد أجبت على ${answers.length} سؤال من أصل ${questions.length}</p>
+                <div class="results-retry">
+                    <button class="btn btn-primary" onclick="location.reload()">🔄 إعادة المحاولة</button>
+                </div>
+            `;
+        }
+        function skipQuestion() {
+            currentIndex++;
+            loadQuestion();
+        }
+
+        function showResults() {
+            document.getElementById('interviewArea').innerHTML = `
+                <h2 style="text-align: center; color: #43e97b; margin-bottom: 2rem;">🎉 أحسنت! أكملت المقابلة</h2>
+                <p style="text-align: center; font-size: 1.2rem; color: #666;">لقد أجبت على ${answers.length} سؤال من أصل ${questions.length}</p>
+                <div style="text-align: center; margin-top: 2rem;">
+                    <button class="btn btn-primary" onclick="location.reload()">🔄 إعادة المحاولة</button>
+                </div>
+            `;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,762 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>متطلبات التأهل للوظيفة - ASK_Tech</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&family=Cairo:wght@400;600;700;900&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Tajawal', 'Cairo', sans-serif;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background */
+        .background-orbs {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: 0.5;
+            animation: floatOrb 25s infinite ease-in-out;
+        }
+
+        .orb-1 {
+            width: 450px;
+            height: 450px;
+            background: radial-gradient(circle, rgba(240, 147, 251, 0.8) 0%, transparent 70%);
+            top: -15%;
+            left: -10%;
+            animation-delay: 0s;
+        }
+
+        .orb-2 {
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(245, 87, 108, 0.6) 0%, transparent 70%);
+            bottom: -20%;
+            right: -15%;
+            animation-delay: 8s;
+        }
+
+        .orb-3 {
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(255, 159, 122, 0.7) 0%, transparent 70%);
+            top: 45%;
+            right: 50%;
+            animation-delay: 16s;
+        }
+
+        @keyframes floatOrb {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(-50px, 50px) scale(1.1); }
+            66% { transform: translate(40px, -40px) scale(0.9); }
+        }
+
+        /* Top Navigation */
+        .top-nav {
+            position: relative;
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.15);
+            -webkit-backdrop-filter: blur(20px);
+            backdrop-filter: blur(20px);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: white;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .nav-brand .brand-underscore {
+            color: #667eea;
+        }
+        
+        .nav-brand .brand-underscore-inline {
+            color: #667eea;
+        }
+        
+        .back-btn {
+            padding: 0.75rem 1.5rem;
+            background: rgba(255, 255, 255, 0.25);
+            border: 2px solid rgba(255, 255, 255, 0.35);
+            border-radius: 12px;
+            color: white;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+        }
+
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.35);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Main Container */
+        .container {
+            position: relative;
+            z-index: 10;
+            max-width: 1400px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+            flex: 1;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            margin-bottom: 3rem;
+            animation: fadeInDown 0.8s ease;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-icon {
+            font-size: 5rem;
+            margin-bottom: 1rem;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 900;
+            color: white;
+            margin-bottom: 1rem;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.95);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .search-section {
+            background: rgba(255, 255, 255, 0.2);
+            -webkit-backdrop-filter: blur(20px);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            padding: 2.5rem;
+            margin-bottom: 3rem;
+            border: 2px solid rgba(255, 255, 255, 0.25);
+            animation: fadeInUp 0.8s ease 0.2s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .search-section h2 {
+            color: white;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .input-wrapper {
+            margin-bottom: 1.5rem;
+        }
+
+        .input-wrapper label {
+            display: block;
+            color: white;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .input-wrapper input {
+            width: 100%;
+            padding: 1.2rem;
+            border-radius: 12px;
+            border: 2px solid rgba(255, 255, 255, 0.35);
+            background: rgba(255, 255, 255, 0.95);
+            font-size: 1.1rem;
+            font-family: 'Tajawal', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        .input-wrapper input:focus {
+            outline: none;
+            border-color: #f5576c;
+            box-shadow: 0 0 0 4px rgba(245, 87, 108, 0.2);
+            background: white;
+        }
+
+        .analyze-btn {
+            width: 100%;
+            padding: 1.3rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            border-radius: 12px;
+            color: white;
+            font-size: 1.3rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        .analyze-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(102, 126, 234, 0.6);
+        }
+
+        /* Results Display */
+        .results-container {
+            display: none;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .results-container.active {
+            display: block;
+        }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .result-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            animation: slideIn 0.6s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .result-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.25);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 3px solid #f093fb;
+        }
+
+        .card-icon {
+            font-size: 2.5rem;
+        }
+
+        .card-title {
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: #333;
+        }
+
+        .card-content {
+            color: #555;
+            line-height: 1.8;
+        }
+
+        .requirement-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .requirement-list li {
+            padding: 0.8rem;
+            margin-bottom: 0.8rem;
+            background: linear-gradient(135deg, #f093fb15 0%, #f5576c15 100%);
+            border-radius: 10px;
+            border-right: 4px solid #f5576c;
+            transition: all 0.3s ease;
+        }
+
+        .requirement-list li:hover {
+            transform: translateX(-5px);
+            background: linear-gradient(135deg, #f093fb25 0%, #f5576c25 100%);
+        }
+
+        .requirement-list li::before {
+            content: "✓";
+            color: #f5576c;
+            font-weight: 900;
+            margin-left: 0.5rem;
+        }
+
+        /* Skills Section */
+        .skills-section {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .skills-section h3 {
+            font-size: 1.8rem;
+            color: #333;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .skill-tag {
+            padding: 1rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 12px;
+            text-align: center;
+            font-weight: 700;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .skill-tag:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.5);
+        }
+
+        /* Loading */
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 4rem;
+        }
+
+        .loading.active {
+            display: block;
+        }
+
+        .spinner {
+            width: 70px;
+            height: 70px;
+            border: 7px solid rgba(255, 255, 255, 0.3);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1.5rem;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .loading-text {
+            color: white;
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 1rem;
+            }
+
+            .top-nav {
+                padding: 1rem;
+            }
+
+            .search-section,
+            .result-card,
+            .skills-section {
+                padding: 1.5rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .results-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .skills-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="background-orbs">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+    </div>
+
+    <!-- Top Navigation -->
+    <nav class="top-nav">
+        <div class="nav-brand">
+            <span>🚀</span>
+            <span>ASK<span class="brand-underscore-inline">_</span>tech</span>
+        </div>
+        <button class="back-btn" onclick="sessionStorage.setItem('scrollToTop', 'true'); window.location.href='/home'">
+            ← العودة للرئيسية
+        </button>
+    </nav>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Hero Section -->
+        <div class="hero">
+            <div class="hero-icon">📋</div>
+            <h1>متطلبات التأهل للوظيفة</h1>
+             <h1>Job_Requirements</h1>                </h1>
+            <p>اكتشف المؤهلات والمهارات والخبرات المطلوبة للوظيفة التي تطمح إليها</p>
+        </div>
+
+        <!-- Search Section -->
+        <div class="search-section">
+            <h2>🔍 أدخل الوظيفة المطلوبة</h2>
+            <div class="input-wrapper">
+                <label>المسمى الوظيفي</label>
+                <input type="text" id="jobTitle" placeholder="مثال: مهندس برمجيات أول، محلل بيانات، مدير مشاريع..." />
+            </div>
+            <button class="analyze-btn" onclick="analyzeRequirements()">
+                🎯 تحليل المتطلبات
+            </button>
+        </div>
+
+        <!-- Loading -->
+        <div class="loading" id="loading">
+            <div class="spinner"></div>
+            <div class="loading-text">جارِ تحليل متطلبات الوظيفة...</div>
+        </div>
+
+        <!-- Results Display -->
+        <div class="results-container" id="resultsContainer">
+            <div class="results-grid">
+                <div class="result-card">
+                    <div class="card-header">
+                        <div class="card-icon">🎓</div>
+                        <div class="card-title">المؤهلات التعليمية</div>
+                    </div>
+                    <div class="card-content">
+                        <ul class="requirement-list" id="educationList"></ul>
+                    </div>
+                </div>
+
+                <div class="result-card">
+                    <div class="card-header">
+                        <div class="card-icon">💼</div>
+                        <div class="card-title">الخبرات المطلوبة</div>
+                    </div>
+                    <div class="card-content">
+                        <ul class="requirement-list" id="experienceList"></ul>
+                    </div>
+                </div>
+
+                <div class="result-card">
+                    <div class="card-header">
+                        <div class="card-icon">📜</div>
+                        <div class="card-title">الشهادات المهنية</div>
+                    </div>
+                    <div class="card-content">
+                        <ul class="requirement-list" id="certificationsList"></ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="skills-section">
+                <h3>⚡ المهارات المطلوبة</h3>
+                <div class="skills-grid" id="skillsGrid"></div>
+            </div>
+
+            <div class="result-card">
+                <div class="card-header">
+                    <div class="card-icon">💡</div>
+                    <div class="card-title">نصائح إضافية</div>
+                </div>
+                <div class="card-content">
+                    <ul class="requirement-list" id="tipsList"></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Clear server-side chat history on page load
+        async function clearServerHistory() {
+            try {
+                const token = localStorage.getItem('access_token');
+                await fetch('/api/history', {
+                    method: 'DELETE',
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+                console.log('Chat history cleared');
+            } catch (error) {
+                console.error('Error clearing history:', error);
+            }
+        }
+
+        // Clear history when page loads
+        window.addEventListener('DOMContentLoaded', () => {
+            // Check if this is the first load of this page
+            const pageKey = 'requirements_loaded';
+            if (!sessionStorage.getItem(pageKey)) {
+                // Mark as loaded and refresh to clear everything
+                sessionStorage.setItem(pageKey, 'true');
+                location.reload();
+            } else {
+                // Clear server history on subsequent loads
+                clearServerHistory();
+            }
+        });
+
+        async function analyzeRequirements() {
+            const jobTitle = document.getElementById('jobTitle').value;
+
+            if (!jobTitle.trim()) {
+                alert('الرجاء إدخال المسمى الوظيفي');
+                return;
+            }
+
+            // Show loading
+            document.getElementById('loading').classList.add('active');
+            document.getElementById('resultsContainer').classList.remove('active');
+
+            try {
+                const token = localStorage.getItem('access_token');
+                
+                if (!token) {
+                    alert('يجب تسجيل الدخول أولاً');
+                    window.location.href = '/login';
+                    return;
+                }
+                
+                console.log('Starting requirements analysis for:', jobTitle);
+                
+                const prompt = `You are a job requirements expert. Analyze requirements for this job in JSON format ONLY.
+
+Job Title: ${jobTitle}
+
+CRITICAL: You MUST respond with ONLY valid JSON, nothing else. No explanations, no text.
+
+Required JSON structure:
+{
+    "education": ["Requirement 1 in Arabic", "Requirement 2 in Arabic"],
+    "experience": ["Experience 1 in Arabic", "Experience 2 in Arabic"],
+    "certifications": ["Cert 1 in Arabic", "Cert 2 in Arabic"],
+    "skills": ["Skill 1 in Arabic", "Skill 2 in Arabic"],
+    "tips": ["Tip 1 in Arabic", "Tip 2 in Arabic"]
+}
+
+Example for Software Engineer:
+{
+    "education": ["بكالوريوس في علوم الحاسب أو ما يعادلها", "ماجستير في هندسة البرمجيات (مفضل)"],
+    "experience": ["3-5 سنوات خبرة في تطوير البرمجيات", "خبرة في العمل ضمن فريق Agile"],
+    "certifications": ["شهادة AWS Solutions Architect", "شهادة في لغة البرمجة المستخدمة"],
+    "skills": ["Java أو Python", "Git وأنظمة التحكم بالإصدارات", "قواعد البيانات SQL/NoSQL", "REST APIs", "حل المشكلات"],
+    "tips": ["بناء portfolio قوي على GitHub", "المشاركة في مشاريع Open Source", "التعلم المستمر للتقنيات الجديدة"]
+}
+
+NOW analyze requirements for: ${jobTitle}
+REMEMBER: JSON ONLY!`;
+
+                const response = await fetch('/api/chat', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: JSON.stringify({
+                        message: prompt,
+                        use_nim: false
+                    })
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                const data = await response.json();
+                console.log('API Response:', data);
+
+                if (!data.response) {
+                    throw new Error('لم يتم استلام استجابة من الخادم');
+                }
+                
+                // Parse the response
+                console.log('Response text:', data.response);
+                
+                let requirementsData;
+                try {
+                    const jsonMatch = data.response.match(/\{[\s\S]*\}/);
+                    console.log('JSON Match:', jsonMatch);
+                    
+                    if (jsonMatch) {
+                        requirementsData = JSON.parse(jsonMatch[0]);
+                        console.log('Parsed JSON:', requirementsData);
+                    } else {
+                        console.log('No JSON found, parsing text');
+                        requirementsData = parseTextResponse(data.response);
+                    }
+                } catch (e) {
+                    console.error('Parse error:', e);
+                    requirementsData = parseTextResponse(data.response);
+                }
+
+                // Ensure all required fields exist
+                requirementsData.education = requirementsData.education || [];
+                requirementsData.experience = requirementsData.experience || [];
+                requirementsData.certifications = requirementsData.certifications || [];
+                requirementsData.skills = requirementsData.skills || [];
+                requirementsData.tips = requirementsData.tips || [];
+                
+                console.log('Final data:', requirementsData);
+                displayRequirements(requirementsData);
+
+            } catch (error) {
+                console.error('Error:', error);
+                alert('حدث خطأ أثناء تحليل المتطلبات. الرجاء المحاولة مرة أخرى.\n\nتفاصيل: ' + error.message);
+            } finally {
+                document.getElementById('loading').classList.remove('active');
+            }
+        }
+
+        function parseTextResponse(text) {
+            console.log('Using text parser');
+            
+            return {
+                education: extractSection(text, ['تعليم', 'مؤهل', 'education', 'degree']),
+                experience: extractSection(text, ['خبر', 'experience', 'سنوات']),
+                certifications: extractSection(text, ['شهاد', 'certif', 'certificate']),
+                skills: extractSection(text, ['مهار', 'skill']),
+                tips: extractSection(text, ['نصائح', 'نصيحة', 'tips', 'tip'])
+            };
+        }
+
+        function extractSection(text, keywords) {
+            const lines = text.split('\n');
+            const items = [];
+            
+            for (let line of lines) {
+                line = line.trim();
+                
+                // Check if line contains any keyword
+                const hasKeyword = keywords.some(kw => line.toLowerCase().includes(kw));
+                
+                // Extract bullet points or numbered items
+                if (line.match(/^[-•*]\s*/) || line.match(/^\d+[\.\)]/)) {
+                    const cleaned = line.replace(/^[-•*\d.)\s]+/, '').trim();
+                    if (cleaned.length > 5 && cleaned.length < 200) {
+                        items.push(cleaned);
+                    }
+                }
+            }
+            
+            return items.length > 0 ? items : ['سيتم تحديدها بناءً على الوظيفة'];
+        }
+
+        function displayRequirements(data) {
+            // Display education
+            const educationList = document.getElementById('educationList');
+            educationList.innerHTML = data.education.map(item => `<li>${item}</li>`).join('');
+
+            // Display experience
+            const experienceList = document.getElementById('experienceList');
+            experienceList.innerHTML = data.experience.map(item => `<li>${item}</li>`).join('');
+
+            // Display certifications
+            const certificationsList = document.getElementById('certificationsList');
+            certificationsList.innerHTML = data.certifications.map(item => `<li>${item}</li>`).join('');
+
+            // Display skills
+            const skillsGrid = document.getElementById('skillsGrid');
+            skillsGrid.innerHTML = data.skills.map(skill => 
+                `<div class="skill-tag">${skill}</div>`
+            ).join('');
+
+            // Display tips
+            const tipsList = document.getElementById('tipsList');
+            tipsList.innerHTML = data.tips.map(tip => `<li>${tip}</li>`).join('');
+
+            // Show results
+            document.getElementById('resultsContainer').classList.add('active');
+            document.getElementById('resultsContainer').scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>

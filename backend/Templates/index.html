@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+
+  <head>
+    <!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>My App</title>
+  <link rel="stylesheet" href="/static/style.css">
+  <script src="/static/app.js" defer></script>
+
+  <!-- body content -->
+
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>ASK_Tech - مساعد مهني بالذكاء الاصطناعي</title>
+    <link rel="stylesheet" href="/static/style.css?v=3" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+  </head>
+
+  <body>
+    <!-- Animated Background Orbs -->
+    <div class="background-orbs">
+      <div class="orb orb-purple"></div>
+      <div class="orb orb-pink"></div>
+      <div class="orb orb-blue"></div>
+    </div>
+
+    <!-- Top Navbar -->
+    <nav class="top-navbar">
+      <div class="navbar-content">
+        <div class="navbar-brand">
+          <span class="brand-logo">🚀</span>
+          <span class="brand-name" dir="ltr">ASK_tech <span class="brand-ai">AI</span></span>
+        </div>
+        <div class="navbar-actions">
+          <button id="startEvaluationInterview" class="eval-btn-nav" title="ابدأ تقييم نفسك الآن">
+            <span class="eval-icon">⭐</span>
+            <span class="eval-text">قم بتقييم نفسك</span>
+          </button>
+          <div class="user-profile">
+            <span id="welcomeText" class="user-welcome">مرحباً، <strong id="username"></strong></span>
+            <button id="logoutBtn" class="logout-btn-nav" title="تسجيل الخروج">
+              <span>🚪</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+
+    <main class="chat-app">
+      <!-- Professional Hero Section -->
+      <section class="modern-hero" aria-label="AskTech hero">
+        <div class="hero-gradient-bg"></div>
+        <div class="hero-content-wrapper">
+          <div class="hero-badge professional">
+            <span class="badge-icon">💡</span>
+            <span class="badge-text">منصة احترافية لتطويرك المهني بالذكاء الاصطناعي</span>
+          </div>
+          <h1 class="modern-logo professional" dir="ltr">
+            <span class="logo-part logo-ask">ASK</span>
+            <span class="logo-underscore">_</span>
+            <span class="logo-part logo-tech">tech</span>
+          </h1>
+          <p class="hero-subtitle professional">ابدأ رحلتك المهنية بثقة مع أدوات تقييم، مقابلات، وتحليل مهارات متقدمة.</p>
+          <div class="hero-stats professional">
+            <div class="stat-item">
+              <div class="stat-icon">👥</div>
+              <div class="stat-value" id="userCount">...</div>
+              <div class="stat-label">عدد المستخدمين</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-icon">📝</div>
+              <div class="stat-value" id="userNames">...</div>
+              <div class="stat-label">أحدث المستخدمين</div>
+            </div>
+          </div>
+          <script>
+            // Fetch user stats for dashboard
+            fetch('/api/users/stats')
+              .then(res => res.json())
+              .then(data => {
+                document.getElementById('userCount').textContent = data.total_users;
+                document.getElementById('userNames').textContent = data.recent_usernames && data.recent_usernames.length
+                  ? data.recent_usernames.join('، ')
+                  : 'لا يوجد';
+              })
+              .catch(() => {
+                document.getElementById('userCount').textContent = '...';
+                document.getElementById('userNames').textContent = '...';
+              });
+          </script>
+          <a href="/video-interview" class="video-interview-btn professional">
+            <span class="btn-mic">🎤</span> ابدأ مقابلة شخصية الآن
+          </a>
+          <!-- Scroll Down Arrow -->
+          <div class="scroll-down-arrow" onclick="document.querySelector('.menu-bar').scrollIntoView({behavior: 'smooth'})">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 5v14M19 12l-7 7-7-7"/>
+            </svg>
+            <span>اكتشف الخدمات</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Testimonials Section -->
+      <section class="testimonials">
+        <div class="testimonials-wrapper">
+          <h2 class="testimonials-title">ماذا يقول مستخدمونا؟</h2>
+          <div class="testimonials-list">
+            <div class="testimonial-card">
+              <div class="testimonial-icon">🌟</div>
+              <div class="testimonial-text">"ساعدتني المنصة في اجتياز مقابلة عملي الأولى بثقة! الأسئلة كانت واقعية والتقييم مفيد جداً."</div>
+              <div class="testimonial-author">سارة - مطورة برمجيات</div>
+            </div>
+            <div class="testimonial-card">
+              <div class="testimonial-icon">💼</div>
+              <div class="testimonial-text">"تحليل فجوة المهارات كان دقيقاً وساعدني في تحديد نقاط التطوير بوضوح."</div>
+              <div class="testimonial-author">أحمد - مدير مشاريع</div>
+            </div>
+            <div class="testimonial-card">
+              <div class="testimonial-icon">🤖</div>
+              <div class="testimonial-text">"واجهة احترافية وسهلة الاستخدام. أنصح بها لكل من يستعد لمقابلة عمل."</div>
+              <div class="testimonial-author">ليلى - محللة بيانات</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Services Menu Bar -->
+      <nav class="menu-bar" aria-label="خدمات التطبيق">
+        <button class="menu-item" id="menuCareerPath" title="احصل على خارطة طريق مهنية">
+          🛤️ خارطة المسار المهني
+        </button>
+        <button class="menu-item" id="menuSkillsGap" title="تحليل فجوة المهارات">
+          📊 تحليل فجوة المهارات
+        </button>
+        <button class="menu-item" id="menuMockInterview" title="محاكي مقابلات تفاعلي">
+          🎤 محاكي المقابلات
+        </button>
+        <button class="menu-item" id="menuResumeBuilder" title="بناء سيرة ذاتية احترافية">
+          📝 بناء السيرة الذاتية
+        </button>
+        <button class="menu-item" id="menuInterview" title="استعد لمقابلة عمل">
+          🎯 استعد لأسئلة مقابلة العمل
+        </button>
+        <button class="menu-item" id="menuRequirements" title="متطلبات التأهل">
+          📋 متطلبات التأهل لوظيفة محددة
+        </button>
+        <button class="menu-item" id="menuTopJobs" title="الوظائف الأكثر طلبًا">
+          📈 الوظائف الأكثر طلبًا
+        </button>
+      </nav>
+
+      <!-- Big Video Interview Button -->
+      <!-- Video Interview CTA -->
+      <section class="video-interview-cta">
+  <a href="/video-interview" class="video-interview-btn">
+    مقابلة شخصية مع مساعدك الذكى
+  </a>
+</section>
+
+
+
+
+      <!-- Video Interview Modal - Enlarged -->
+      <div id="videoModal" class="video-modal">
+        <button class="close-modal-btn" id="closeModalBtn" title="إغلاق">✕</button>
+        <div class="video-container-large">
+          <div class="video-header-bar">
+            <div class="video-title">
+              <span class="video-title-icon">🎥</span>
+              <span>مقابلة شخصية مباشرة</span>
+            </div>
+            <div class="video-status-badge">
+              <span class="status-dot"></span>
+              <span>متصل</span>
+            </div>
+          </div>
+          <div class="video-streams-large">
+            <div class="video-stream-large interviewer-side">
+              <div class="interviewer-video-feed" id="interviewerAvatar">
+                <!-- Real person video feed -->
+                <img id="interviewerPhoto" src="/static/interviewer.jpg" alt="  أى تى أى- المُحاورة" class="interviewer-video">
+                
+                <!-- Video call overlays -->
+                <div class="video-scan-line"></div>
+                <div class="video-noise"></div>
+                
+                <!-- Speaking indicator -->
+                <div class="audio-wave" aria-hidden="true">
+                  <span></span><span></span><span></span><span></span><span></span>
+                </div>
+                
+                <!-- Name overlay -->
+                <div class="video-name-tag">
+                  <span class="name-icon">👤</span>
+                  <span class="name-text">أى تى أى - المحاورة الذكية</span>
+                </div>
+                
+                <!-- Live indicator -->
+                <div class="video-live-badge">
+                  <span class="live-dot"></span>
+                  <span>LIVE</span>
+                </div>
+              </div>
+            </div>
+            <div class="video-stream-large user-side">
+              <video id="userVideo" autoplay muted></video>
+              <div class="video-label-large">أنت</div>
+            </div>
+          </div>
+
+          <!-- Live transcript -->
+          <div class="transcript-panel">
+            <div class="transcript-header">
+              <span class="transcript-icon">💬</span>
+              <span>نص المحادثة المباشر</span>
+            </div>
+            <div id="interviewTranscript" class="interview-transcript" aria-live="polite" aria-label="نص المحادثة">
+              <div class="t-row system">مرحباً! أنا أى تى أى 👋 اضغط "ابدأ المقابلة" للبدء في حوار مهني حول خبراتك وأهدافك المهنية.</div>
+            </div>
+          </div>
+
+          <div class="interview-controls-panel">
+            <div id="interviewQuestion" class="interview-question-display">
+              <span class="question-icon">💡</span>
+              <span class="question-text">جاهز للبدء؟ اضغط على الزر أدناه لبدء المقابلة الآن!</span>
+            </div>
+            <div class="interview-actions-bar">
+              <button id="startInterview" class="interview-btn-modern primary">
+                <span class="btn-icon">🎬</span>
+                <span class="btn-text">ابدأ المقابلة</span>
+              </button>
+              <button id="nextQuestion" class="interview-btn-modern secondary">
+                <span class="btn-icon">⏭️</span>
+                <span class="btn-text">السؤال التالي</span>
+              </button>
+              <button id="endInterview" class="interview-btn-modern danger">
+                <button id="endInterviewBtn" type="button">إنهاء المقابلة</button>
+
+                <span class="btn-icon">❌</span>
+                <span class="btn-text">إنهاء المقابلة</span>
+                
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="language-selector">
+        <label for="language">اللغة / Language:</label>
+        <select id="language">
+          <option value="ar-SA">العربية (Arabic)</option>
+          <option value="en-US">English</option>
+        </select>
+      </div>
+      
+      <section id="history" class="history"></section>
+
+      <div class="composer">
+        <textarea id="message" placeholder="اسألني عن المهارات، الوظائف، أو التحضير للمقابلات..."></textarea>
+        <div class="controls">
+          <button id="speech" title="إدخال صوتي">🎤</button>
+          <button id="send">إرسال</button>
+        </div>
+      </div>
+    </main>
+
+    <script src="/static/app.js?v=2"></script>
+        <script>
+          // Handle 'محاكي المقابلات' button click
+          const mockInterviewBtn = document.getElementById("menuMockInterview");
+          if (mockInterviewBtn) {
+            mockInterviewBtn.addEventListener("click", function () {
+              window.location.href = "/video-interview";
+            });
+          }
+        </script>
+    <script>
+  // فتح صفحة الفيديو إنترفيو بالقوة 😄
+  const openVideoInterviewPageBtn = document.getElementById("openVideoInterviewPage");
+  if (openVideoInterviewPageBtn) {
+    openVideoInterviewPageBtn.addEventListener("click", function () {
+      window.location.href = "/video-interview";
+    });
+  }
+</script>
+<span id="interviewTimer">00:00</span>
+
+    
+  </body>
+</html>

@@ -1,0 +1,370 @@
+<!doctype html>
+
+
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تسجيل الدخول - AskTech</title>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+      }
+logo {
+  text-align: center;
+  font-weight: 800;
+  font-size: 2.2rem;       /* large */
+  color: #6b21a8;          /* bold purple */
+  letter-spacing: 1.5px;   /* subtle branding vibe */
+  margin-bottom: 12px;     /* space before the title */
+}
+      .auth-container {
+        width: 100%;
+        max-width: 450px;
+        background: white;
+        border-radius: 20px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        padding: 40px;
+      }
+
+      h1 {
+        color: #667eea;
+        margin-bottom: 10px;
+        font-size: 2rem;
+        text-align: center;
+      }
+
+      .subtitle {
+        text-align: center;
+        color: #666;
+        margin-bottom: 30px;
+        font-size: 0.95rem;
+      }
+
+      .language-toggle {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+
+      .language-toggle button {
+        background: none;
+        border: 2px solid #667eea;
+        color: #667eea;
+        padding: 6px 16px;
+        border-radius: 20px;
+        cursor: pointer;
+        font-size: 0.85rem;
+        font-weight: 600;
+        transition: all 0.3s;
+      }
+
+      .language-toggle button:hover {
+        background: #667eea;
+        color: white;
+      }
+
+      .form-group {
+        margin-bottom: 20px;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 8px;
+        color: #333;
+        font-weight: 600;
+        font-size: 0.9rem;
+      }
+
+      input {
+        width: 100%;
+        padding: 12px 16px;
+        border: 2px solid #e0e0e0;
+        border-radius: 10px;
+        font-size: 1rem;
+        font-family: inherit;
+        transition: border-color 0.3s;
+      }
+
+      input:focus {
+        outline: none;
+        border-color: #667eea;
+      }
+
+      .error {
+        color: #e74c3c;
+        font-size: 0.85rem;
+        margin-top: 5px;
+        display: none;
+      }
+
+      .error.show {
+        display: block;
+      }
+
+      .submit-btn {
+        width: 100%;
+        padding: 14px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        border: none;
+        border-radius: 10px;
+        font-size: 1.1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s;
+        margin-top: 10px;
+      }
+
+      .submit-btn:hover:not(:disabled) {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+      }
+
+      .submit-btn:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+      }
+
+      .divider {
+        text-align: center;
+        margin: 25px 0;
+        color: #999;
+        font-size: 0.9rem;
+      }
+
+      .link {
+        text-align: center;
+        margin-top: 20px;
+      }
+
+      .link a {
+        color: #667eea;
+        text-decoration: none;
+        font-weight: 600;
+      }
+
+      .link a:hover {
+        text-decoration: underline;
+      }
+
+      .success-message {
+        background: #d4edda;
+        color: #155724;
+        padding: 12px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+        display: none;
+      }
+
+      .success-message.show {
+        display: block;
+      }
+
+      /* English (LTR) styles */
+      html[dir="ltr"] {
+        direction: ltr;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="auth-container">
+      <h1 id="title">تسجيل الدخول 🔐</h1>
+      <p class="subtitle" id="subtitle">مرحباً بعودتك إلى AskTech</p>
+
+      <div class="language-toggle">
+        <button type="button" id="langToggle">Switch to English</button>
+      </div>
+
+      <div class="success-message" id="successMessage"></div>
+
+      <form id="loginForm">
+        <div class="form-group">
+          <label for="username" id="usernameLabel">اسم المستخدم أو البريد الإلكتروني</label>
+          <input
+            type="text"
+            id="username"
+            name="username"
+            required
+            autocomplete="username"
+          />
+          <div class="error" id="usernameError">الرجاء إدخال اسم المستخدم</div>
+        </div>
+
+        <div class="form-group">
+          <label for="password" id="passwordLabel">كلمة المرور</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            required
+            autocomplete="current-password"
+          />
+          <div class="error" id="passwordError">الرجاء إدخال كلمة المرور</div>
+        </div>
+
+        <div class="error" id="formError"></div>
+
+        <button type="submit" class="submit-btn" id="submitBtn">
+          تسجيل الدخول
+        </button>
+      </form>
+
+      <div class="divider" id="divider">أو</div>
+
+      <div class="link">
+        <span id="noAccountText">ليس لديك حساب؟</span>
+        <a href="/register" id="registerLink">إنشاء حساب جديد</a>
+      </div>
+    </div>
+
+    <script>
+      const translations = {
+        ar: {
+          title: 'تسجيل الدخول 🔐',
+          subtitle: 'مرحباً بعودتك إلى AskTech',
+          langToggle: 'Switch to English',
+          usernameLabel: 'اسم المستخدم أو البريد الإلكتروني',
+          passwordLabel: 'كلمة المرور',
+          submitBtn: 'تسجيل الدخول',
+          divider: 'أو',
+          noAccountText: 'ليس لديك حساب؟',
+          registerLink: 'إنشاء حساب جديد',
+          usernameError: 'الرجاء إدخال اسم المستخدم',
+          passwordError: 'الرجاء إدخال كلمة المرور',
+          invalidCredentials: 'اسم المستخدم أو كلمة المرور غير صحيحة',
+          serverError: 'حدث خطأ في الخادم، حاول مرة أخرى'
+        },
+        en: {
+          title: 'Login 🔐',
+          subtitle: 'Welcome back to AskTech',
+          langToggle: 'التبديل للعربية',
+          usernameLabel: 'Username or Email',
+          passwordLabel: 'Password',
+          submitBtn: 'Login',
+          divider: 'or',
+          noAccountText: "Don't have an account?",
+          registerLink: 'Create new account',
+          usernameError: 'Please enter username',
+          passwordError: 'Please enter password',
+          invalidCredentials: 'Invalid username or password',
+          serverError: 'Server error, please try again'
+        }
+      };
+
+      let currentLang = 'ar';
+
+      // Language toggle
+      document.getElementById('langToggle').addEventListener('click', () => {
+        currentLang = currentLang === 'ar' ? 'en' : 'ar';
+        const html = document.documentElement;
+        const t = translations[currentLang];
+
+        if (currentLang === 'ar') {
+          html.setAttribute('dir', 'rtl');
+          html.setAttribute('lang', 'ar');
+        } else {
+          html.setAttribute('dir', 'ltr');
+          html.setAttribute('lang', 'en');
+        }
+
+        document.getElementById('title').textContent = t.title;
+        document.getElementById('subtitle').textContent = t.subtitle;
+        document.getElementById('langToggle').textContent = t.langToggle;
+        document.getElementById('usernameLabel').textContent = t.usernameLabel;
+        document.getElementById('passwordLabel').textContent = t.passwordLabel;
+        document.getElementById('submitBtn').textContent = t.submitBtn;
+        document.getElementById('divider').textContent = t.divider;
+        document.getElementById('noAccountText').textContent = t.noAccountText;
+        document.getElementById('registerLink').textContent = t.registerLink;
+      });
+
+      // Form submission
+      document.getElementById('loginForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        // Clear previous errors
+        document.querySelectorAll('.error').forEach(el => el.classList.remove('show'));
+
+        const username = document.getElementById('username').value.trim();
+        const password = document.getElementById('password').value;
+        const submitBtn = document.getElementById('submitBtn');
+        const formError = document.getElementById('formError');
+        const t = translations[currentLang];
+
+        // Validation
+        let isValid = true;
+        if (!username) {
+          document.getElementById('usernameError').textContent = t.usernameError;
+          document.getElementById('usernameError').classList.add('show');
+          isValid = false;
+        }
+        if (!password) {
+          document.getElementById('passwordError').textContent = t.passwordError;
+          document.getElementById('passwordError').classList.add('show');
+          isValid = false;
+        }
+
+        if (!isValid) return;
+
+        // Submit
+        submitBtn.disabled = true;
+        submitBtn.textContent = currentLang === 'ar' ? 'جاري التحقق...' : 'Logging in...';
+
+        try {
+          const response = await fetch('/api/auth/login', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ username, password })
+          });
+
+          const data = await response.json();
+
+          if (response.ok) {
+            // Store token in localStorage
+            localStorage.setItem('access_token', data.access_token);
+            localStorage.setItem('user', JSON.stringify(data.user));
+
+            console.log('✅ Login successful, redirecting...');
+            
+            // Set flag to scroll to top and redirect to main authenticated page
+            sessionStorage.setItem('scrollToTop', 'true');
+            // Add hash to force scroll position reset
+            window.location.href = '/home#top';
+          } else {
+            // Show error
+            formError.textContent = data.detail || t.invalidCredentials;
+            formError.classList.add('show');
+          }
+        } catch (error) {
+          console.error('Login error:', error);
+          formError.textContent = t.serverError;
+          formError.classList.add('show');
+        } finally {
+          submitBtn.disabled = false;
+          submitBtn.textContent = t.submitBtn;
+        }
+      });
+
+      // Clear any existing tokens when login page loads
+      // This forces users to login every time they visit
+      localStorage.removeItem('access_token');
+      localStorage.removeItem('user');
+      console.log('Login page loaded - tokens cleared');
+    </script>
+  </body>
+</html>

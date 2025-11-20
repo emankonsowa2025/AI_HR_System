@@ -1,0 +1,856 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>خريطة المسار الوظيفي - ASK_Tech</title>
+   
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Tajawal', 'Cairo', sans-serif;
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        .background-orbs {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(85px);
+            opacity: 0.5;
+            animation: floatOrb 24s infinite ease-in-out;
+        }
+
+        .orb-1 {
+            width: 480px;
+            height: 480px;
+            background: radial-gradient(circle, rgba(250, 112, 154, 0.8) 0%, transparent 70%);
+            top: -10%;
+            left: -12%;
+            animation-delay: 0s;
+        }
+
+        .orb-2 {
+            width: 520px;
+            height: 520px;
+            background: radial-gradient(circle, rgba(254, 225, 64, 0.7) 0%, transparent 70%);
+            bottom: -15%;
+            right: -10%;
+            animation-delay: 8s;
+        }
+
+        .orb-3 {
+            width: 450px;
+            height: 450px;
+            background: radial-gradient(circle, rgba(255, 154, 158, 0.6) 0%, transparent 70%);
+            top: 48%;
+            right: 52%;
+            animation-delay: 16s;
+        }
+
+        @keyframes floatOrb {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(-55px, 55px) scale(1.12); }
+            66% { transform: translate(45px, -45px) scale(0.88); }
+        }
+
+        .top-nav {
+            position: relative;
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.15);
+            -webkit-backdrop-filter: blur(20px);
+            backdrop-filter: blur(20px);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: white;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .nav-brand .highlight {
+            color: #fee140;
+        }
+
+        .back-btn {
+            padding: 0.75rem 1.5rem;
+            background: rgba(255, 255, 255, 0.25);
+            border: 2px solid rgba(255, 255, 255, 0.35);
+            border-radius: 12px;
+            color: white;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+        }
+
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.35);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .container {
+            position: relative;
+            z-index: 10;
+            max-width: 1400px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+            flex: 1;
+        }
+
+        .hero {
+            text-align: center;
+            margin-bottom: 3rem;
+            animation: fadeInDown 0.8s ease;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-icon {
+            font-size: 5rem;
+            margin-bottom: 1rem;
+            animation: swing 2.5s infinite ease-in-out;
+        }
+
+        @keyframes swing {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(10deg); }
+            75% { transform: rotate(-10deg); }
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 900;
+            color: white;
+            margin-bottom: 1rem;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.95);
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .input-section {
+            background: rgba(255, 255, 255, 0.2);
+            -webkit-backdrop-filter: blur(20px);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            padding: 2.5rem;
+            margin-bottom: 3rem;
+            border: 2px solid rgba(255, 255, 255, 0.25);
+            animation: fadeInUp 0.8s ease 0.2s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .input-section h2 {
+            color: white;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .input-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .input-wrapper label {
+            display: block;
+            color: white;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            font-size: 1.05rem;
+        }
+
+        .input-wrapper input,
+        .input-wrapper select {
+            width: 100%;
+            padding: 1.1rem;
+            border-radius: 12px;
+            border: 2px solid rgba(255, 255, 255, 0.35);
+            background: rgba(255, 255, 255, 0.95);
+            font-size: 1rem;
+            font-family: 'Tajawal', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        .input-wrapper input:focus,
+        .input-wrapper select:focus {
+            outline: none;
+            border-color: #fa709a;
+            box-shadow: 0 0 0 4px rgba(250, 112, 154, 0.2);
+            background: white;
+        }
+
+        .generate-btn {
+            width: 100%;
+            padding: 1.3rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            border-radius: 12px;
+            color: white;
+            font-size: 1.3rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        .generate-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(102, 126, 234, 0.6);
+        }
+
+        .roadmap-container {
+            display: none;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .roadmap-container.active {
+            display: block;
+        }
+
+        .timeline {
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 50%;
+            width: 4px;
+            background: linear-gradient(180deg, #fa709a 0%, #fee140 100%);
+            transform: translateX(50%);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 3rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .timeline-item:nth-child(odd) {
+            flex-direction: row-reverse;
+        }
+
+        .timeline-content {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+            animation: slideIn 0.6s ease;
+            margin: 0 2rem;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content {
+            animation: slideInRight 0.6s ease;
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .timeline-marker {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            box-shadow: 0 5px 20px rgba(250, 112, 154, 0.5);
+            z-index: 10;
+        }
+
+        .phase-title {
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: #333;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .phase-duration {
+            display: inline-block;
+            padding: 0.4rem 1rem;
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+            color: white;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .phase-description {
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+            margin-bottom: 1rem;
+        }
+
+        .skill-tag {
+            padding: 0.5rem 1rem;
+            background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
+            color: #667eea;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border: 1px solid #667eea30;
+        }
+
+        .resources {
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 2px solid #f0f0f0;
+        }
+
+        .resources h4 {
+            color: #fa709a;
+            margin-bottom: 0.8rem;
+            font-size: 1.1rem;
+        }
+
+        .resources ul {
+            margin-right: 1.5rem;
+            color: #666;
+        }
+
+        .resources li {
+            margin-bottom: 0.5rem;
+            line-height: 1.6;
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 4rem;
+        }
+
+        .loading.active {
+            display: block;
+        }
+
+        .spinner {
+            width: 70px;
+            height: 70px;
+            border: 7px solid rgba(255, 255, 255, 0.3);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1.5rem;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .loading-text {
+            color: white;
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 1rem;
+            }
+
+            .timeline::before {
+                right: 30px;
+            }
+
+            .timeline-item {
+                flex-direction: row !important;
+            }
+
+            .timeline-item:nth-child(odd) {
+                flex-direction: row !important;
+            }
+
+            .timeline-content {
+                margin: 0 0 0 2rem;
+            }
+
+            .input-group {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="background-orbs">
+        <div class="orb orb-1"></div>
+        <div class="orb-2"></div>
+        <div class="orb-3"></div>
+    </div>
+
+    <nav class="top-nav">
+        <div class="nav-brand">
+            <span>🚀</span>
+            <span>ASK<span class="highlight">_</span>tech</span>
+        </div>
+        <button class="back-btn" onclick="sessionStorage.setItem('scrollToTop', 'true'); window.location.href='/home'">
+            ← العودة للرئيسية
+        </button>
+    </nav>
+
+    <div class="container">
+        <div class="hero">
+            <div class="hero-icon">🗺️</div>
+            <h1>خريطة المسار الوظيفي</h1>
+             <h1>career-path - ASK_Tech</h1>
+            <p>احصل على خريطة طريق مخصصة لتطوير مسارك المهني خطوة بخطوة</p>
+        </div>
+
+        <div class="input-section">
+            <h2>🎯 حدد هدفك المهني</h2>
+            <div class="input-group">
+                <div class="input-wrapper">
+                    <label for="targetJob">الوظيفة المستهدفة</label>
+                    <input type="text" id="targetJob" placeholder="مثال: مهندس ذكاء اصطناعي" />
+                </div>
+                <div class="input-wrapper">
+                    <label for="currentLevel">مستواك الحالي</label>
+                    <select id="currentLevel">
+                        <option value="">اختر المستوى</option>
+                        <option value="beginner">مبتدئ (بدون خبرة)</option>
+                        <option value="entry">مستوى مبتدئ (0-2 سنة)</option>
+                        <option value="intermediate">متوسط (2-5 سنوات)</option>
+                        <option value="advanced">متقدم (5+ سنوات)</option>
+                    </select>
+                </div>
+            </div>
+            <div class="input-group">
+                <div class="input-wrapper">
+                    <label for="education">خلفيتك التعليمية</label>
+                    <input type="text" id="education" placeholder="مثال: بكالوريوس علوم حاسب" />
+                </div>
+                <div class="input-wrapper">
+                    <label for="timeframe">الإطار الزمني المستهدف</label>
+                    <select id="timeframe">
+                        <option value="6">6 أشهر</option>
+                        <option value="12" selected>سنة واحدة</option>
+                        <option value="24">سنتان</option>
+                        <option value="36">3 سنوات</option>
+                    </select>
+                </div>
+            </div>
+            <button class="generate-btn" onclick="generateRoadmap()">
+                ✨ إنشاء خريطة المسار
+            </button>
+        </div>
+
+        <div class="loading" id="loading">
+            <div class="spinner"></div>
+            <div class="loading-text">جارِ إنشاء خريطة مسارك الوظيفي...</div>
+        </div>
+
+        <div class="roadmap-container" id="roadmapContainer">
+            <div class="timeline" id="timeline"></div>
+        </div>
+    </div>
+
+    <script>
+        async function clearServerHistory() {
+            try {
+                const token = localStorage.getItem('access_token');
+                await fetch('/api/history', {
+                    method: 'DELETE',
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+            } catch (error) {
+                console.error('Error clearing history:', error);
+            }
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            // Check if this is the first load of this page
+            const pageKey = 'careerpath_loaded';
+            if (!sessionStorage.getItem(pageKey)) {
+                // Mark as loaded and refresh to clear everything
+                sessionStorage.setItem(pageKey, 'true');
+                location.reload();
+            } else {
+                // Clear server history on subsequent loads
+                clearServerHistory();
+            }
+        });
+
+        async function generateRoadmap() {
+            const targetJob = document.getElementById('targetJob').value;
+            const currentLevel = document.getElementById('currentLevel').value;
+            const education = document.getElementById('education').value;
+            const timeframe = document.getElementById('timeframe').value;
+
+            if (!targetJob || !currentLevel) {
+                alert('الرجاء إدخال الوظيفة المستهدفة والمستوى الحالي');
+                return;
+            }
+
+            document.getElementById('loading').classList.add('active');
+            document.getElementById('roadmapContainer').classList.remove('active');
+
+            try {
+                const accessToken = localStorage.getItem('access_token');
+                
+                if (!accessToken) {
+                    alert('يجب تسجيل الدخول أولاً');
+                    window.location.href = '/login';
+                    return;
+                }
+                
+                console.log('Starting roadmap generation...');
+                console.log('Target Job:', targetJob);
+                console.log('Current Level:', currentLevel);
+                
+                const prompt = `You are a technical career development expert. Create a highly detailed and technical career roadmap in JSON format ONLY.
+
+Target Job: ${targetJob}
+Current Level: ${currentLevel}
+Education: ${education || 'Not specified'}
+Timeframe: ${timeframe} months
+
+CRITICAL REQUIREMENTS:
+1. You MUST respond with ONLY valid JSON, nothing else
+2. Make descriptions VERY TECHNICAL with specific technologies, frameworks, and tools
+3. Include step-by-step technical actions in description
+4. Skills must be specific technical skills (frameworks, libraries, tools, languages)
+5. Resources must include specific courses, books, certifications with exact names
+6. Use 5-7 phases with clear technical progression
+
+Required JSON structure:
+{
+    "phases": [
+        {
+            "title": "Phase Title in Arabic (technical)",
+            "duration": "Time duration in Arabic",
+            "icon": "appropriate emoji",
+            "description": "VERY TECHNICAL description in Arabic with bullet-style steps: • Step 1 with specific tech • Step 2 with tools • Step 3 with frameworks",
+            "skills": ["Specific Tech 1", "Framework 2", "Tool 3", "Language 4"],
+            "resources": ["Exact Course Name - Platform", "Book Title - Author", "Certification Name"]
+        }
+    ]
+}
+
+Example for Data Scientist:
+{
+    "phases": [
+        {
+            "title": "المرحلة 1: إتقان Python وأدوات علوم البيانات الأساسية",
+            "duration": "6-8 أسابيع",
+            "icon": "🐍",
+            "description": "• تعلم Python 3.x مع التركيز على OOP و decorators • إتقان Jupyter Notebook/Lab للتطوير التفاعلي • تثبيت واستخدام Anaconda distribution • التعامل مع virtual environments (venv, conda) • ممارسة Git/GitHub للتحكم بالإصدارات",
+            "skills": ["Python 3.x", "Jupyter", "Git/GitHub", "pip/conda", "VS Code/PyCharm"],
+            "resources": ["Python for Everybody - Coursera", "Automate the Boring Stuff with Python", "GitHub Learning Lab"]
+        },
+        {
+            "title": "المرحلة 2: معالجة وتحليل البيانات باستخدام NumPy و Pandas",
+            "duration": "8-10 أسابيع",
+            "icon": "📊",
+            "description": "• إتقان NumPy arrays و vectorization للحسابات السريعة • معالجة DataFrames باستخدام Pandas (merge, groupby, pivot) • تنظيف البيانات: handling missing values, duplicates, outliers • قراءة البيانات من CSV, Excel, JSON, SQL databases • استخدام regex لتنظيف النصوص • التعامل مع Time Series data",
+            "skills": ["NumPy", "Pandas", "Data Wrangling", "SQL (PostgreSQL/MySQL)", "Regular Expressions"],
+            "resources": ["Data Analysis with Python - freeCodeCamp", "Python for Data Analysis - Wes McKinney", "SQL for Data Science - Mode Analytics"]
+        },
+        {
+            "title": "المرحلة 3: تصور البيانات والتحليل الاستكشافي",
+            "duration": "4-6 أسابيع",
+            "icon": "📈",
+            "description": "• إنشاء visualizations باستخدام Matplotlib و Seaborn • بناء dashboards تفاعلية مع Plotly و Dash • استخدام Tableau/Power BI للتقارير البصرية • تطبيق EDA techniques (distributions, correlations, patterns) • تصميم charts احترافية للعروض التقديمية",
+            "skills": ["Matplotlib", "Seaborn", "Plotly", "Tableau/Power BI", "Statistical Analysis"],
+            "resources": ["Data Visualization with Python - Coursera", "Storytelling with Data - Cole Nussbaumer", "Tableau Desktop Specialist Certification"]
+        }
+    ]
+}
+
+NOW generate a HIGHLY TECHNICAL roadmap for: ${targetJob}
+REMEMBER: JSON ONLY with very technical and detailed descriptions using bullet points!`;
+
+                const response = await fetch('/api/chat', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer ' + accessToken,
+                    },
+                    body: JSON.stringify({
+                        message: prompt,
+                        use_nim: false
+                    })
+                });
+
+                if (!response.ok) {
+                    throw new Error('HTTP error! response status: ' + response.status);
+                }
+
+                const data = await response.json();
+                console.log('API Response:', data);
+
+                if (!data.response) {
+                    throw new Error('لم يتم استلام استجابة من الخادم');
+                }
+                
+                console.log('Response text:', data.response);
+                
+                let roadmapData;
+                try {
+                    const jsonMatch = data.response.match(/\{[\s\S]*\}/);
+                    console.log('JSON Match:', jsonMatch);
+                    
+                    if (jsonMatch) {
+                        roadmapData = JSON.parse(jsonMatch[0]);
+                        console.log('Parsed JSON:', roadmapData);
+                    } else {
+                        console.log('No JSON found, using text parser');
+                        roadmapData = parseTextResponse(data.response);
+                    }
+                } catch (e) {
+                    console.error('JSON Parse Error:', e);
+                    console.log('Falling back to text parser');
+                    roadmapData = parseTextResponse(data.response);
+                }
+
+                console.log('Final roadmap data:', roadmapData);
+                
+                if (!roadmapData.phases && !Array.isArray(roadmapData)) {
+                    throw new Error('البيانات المستلمة غير صالحة');
+                }
+
+                displayRoadmap(roadmapData.phases || roadmapData);
+
+            } catch (error) {
+                console.error('Error Details:', error);
+                let errorMessage = 'حدث خطأ أثناء إنشاء خريطة المسار.';
+                
+                if (error.message.includes('HTTP error')) {
+                    errorMessage += '\n\nخطأ في الاتصال بالخادم. تحقق من:\n- تسجيل الدخول\n- اتصال الإنترنت';
+                } else if (error.message.includes('استجابة')) {
+                    errorMessage += '\n\nلم يتم استلام رد من الخادم.';
+                } else {
+                    errorMessage += "\n\nتفاصيل الخطأ: " + error.message;
+                }
+                
+                alert(errorMessage);
+            } finally {
+                document.getElementById('loading').classList.remove('active');
+            }
+        }
+
+        function parseTextResponse(text) {
+            console.log('Parsing text response, length:', text.length);
+            
+            const phases = [];
+            const lines = text.split('\n').filter(l => l.trim());
+            
+            let currentPhase = null;
+            
+            for (let line of lines) {
+                line = line.trim();
+                
+                // Check for phase headers
+                if (line.match(/^(المرحلة|Phase|الخطوة|Step)\s*\d+/i) || line.match(/^\d+[\.\)]/)) {
+                    if (currentPhase) {
+                        phases.push(currentPhase);
+                    }
+                    currentPhase = {
+                        title: line.replace(/^\d+[\.\)]\s*/, ''),
+                        duration: "1-2 شهر",
+                        icon: ["📚", "📊", "🎯", "💡", "🚀", "⭐"][phases.length % 6],
+                        description: "",
+                        skills: [],
+                        resources: []
+                    };
+                }
+                // Collect description
+                else if (currentPhase && line.length > 20) {
+                    if (!currentPhase.description) {
+                        currentPhase.description = line;
+                    }
+                    // Look for skills
+                    if (line.includes('مهار') || line.includes('تعلم') || line.includes('skill')) {
+                        const skills = line.split(/[،,]/).map(s => s.trim()).filter(s => s.length > 3);
+                        currentPhase.skills.push(...skills.slice(0, 3));
+                    }
+                }
+            }
+            
+            if (currentPhase) {
+                phases.push(currentPhase);
+            }
+
+            if (phases.length === 0) {
+                console.log('No phases found, creating default phases');
+                return [
+                    {
+                        title: "المرحلة الأولى: تعلم الأساسيات",
+                        duration: "1-2 شهر",
+                        icon: "📚",
+                        description: "ابدأ بتعلم الأساسيات والمهارات الضرورية للمجال",
+                        skills: ["الأساسيات", "المفاهيم الرئيسية", "الأدوات الأولية"],
+                        resources: ["كورسات أونلاين", "كتب متخصصة"]
+                    },
+                    {
+                        title: "المرحلة الثانية: التطبيق العملي",
+                        duration: "2-3 أشهر",
+                        icon: "🎯",
+                        description: "طبق ما تعلمته في مشاريع عملية",
+                        skills: ["التطبيق العملي", "حل المشكلات", "بناء المشاريع"],
+                        resources: ["مشاريع تدريبية", "GitHub"]
+                    }
+                ];
+            }
+            
+            console.log('Parsed phases:', phases);
+            return phases;
+        }
+        
+        function extractSkills(text) {
+            const skillMatch = text.match(/مهار[ات]*:?\s*(.+)/i);
+            if (skillMatch) {
+                return skillMatch[1].split(/[،,]/).map(s => s.trim()).filter(s => s);
+            }
+            return [];
+        }
+        
+        function extractResources(text) {
+            const resourceMatch = text.match(/موارد|مصادر|كورسات:?\s*(.+)/i);
+            if (resourceMatch) {
+                return resourceMatch[1].split(/[،,]/).map(s => s.trim()).filter(s => s);
+            }
+            return [];
+        }
+
+        function displayRoadmap(phases) {
+            const timeline = document.getElementById('timeline');
+            timeline.innerHTML = '';
+
+            phases.forEach((phase, index) => {
+                const item = document.createElement('div');
+                item.className = 'timeline-item';
+                item.style.animationDelay = (index * 0.2) + 's';
+
+                item.innerHTML = ''
+                    + '<div class="timeline-marker">' + (phase.icon || '') + '</div>'
+                    + '<div class="timeline-content">'
+                        + '<div class="phase-title">' + phase.title + '</div>'
+                        + '<div class="phase-duration">⏱️ ' + phase.duration + '</div>'
+                        + '<div class="phase-description">' + phase.description + '</div>'
+                        + ((phase.skills && phase.skills.length > 0) ?
+                            ('<div class="skills-list">'
+                                + phase.skills.map(skill => '<span class="skill-tag">' + skill + '</span>').join('')
+                            + '</div>')
+                        : '')
+                        + ((phase.resources && phase.resources.length > 0) ?
+                            ('<div class="resources">'
+                                + '<h4>📚 موارد مقترحة:</h4>'
+                                + '<ul>'
+                                    + phase.resources.map(resource => '<li>' + resource + '</li>').join('')
+                                + '</ul>'
+                            + '</div>')
+                        : '')
+                    + '</div>';
+
+                timeline.appendChild(item);
+            });
+
+            document.getElementById('roadmapContainer').classList.add('active');
+            document.getElementById('roadmapContainer').scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>

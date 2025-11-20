@@ -1,0 +1,501 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>بناء السيرة الذاتية - ASK_Tech</title>
+     <title>CV_ Builder - ASK_Tech</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Tajawal', 'Cairo', sans-serif;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            min-height: 100vh;
+        }
+        .top-nav {
+            background: rgba(255, 255, 255, 0.2);
+            -webkit-backdrop-filter: blur(20px);
+            backdrop-filter: blur(20px);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: white;
+        }
+        .nav-brand .accent {
+            color: #f5576c;
+        }
+        .accent-red {
+            color: #f5576c;
+        }
+        .back-btn {
+            padding: 0.75rem 1.5rem;
+            background: rgba(255, 255, 255, 0.3);
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            border-radius: 12px;
+            color: white;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.4);
+            transform: translateY(-2px);
+        }
+        .container {
+            max-width: 1400px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+        .hero {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        .hero-icon {
+            font-size: 5rem;
+            margin-bottom: 1rem;
+        }
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 900;
+            color: white;
+            margin-bottom: 1rem;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+        .hero p {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.95);
+        }
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+        @media (max-width: 1024px) {
+            .two-column { grid-template-columns: 1fr; }
+        }
+        .form-section {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 24px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+        }
+        .form-section h2 {
+            font-size: 2rem;
+            color: #333;
+            margin-bottom: 1.5rem;
+        }
+        .input-group {
+            margin-bottom: 1.5rem;
+        }
+        .input-group label {
+            display: block;
+            color: #333;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        .input-group input, .input-group textarea, .input-group select {
+            width: 100%;
+            padding: 1rem;
+            border-radius: 10px;
+            border: 2px solid #e0e0e0;
+            font-family: 'Tajawal', sans-serif;
+            transition: all 0.3s ease;
+        }
+        .input-group textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+        .input-group input:focus, .input-group textarea:focus, .input-group select:focus {
+            outline: none;
+            border-color: #f093fb;
+            box-shadow: 0 0 0 4px rgba(240, 147, 251, 0.2);
+        }
+        .generate-btn {
+            width: 100%;
+            padding: 1.3rem;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            border: none;
+            border-radius: 12px;
+            color: white;
+            font-size: 1.3rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+        }
+        .generate-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(240, 147, 251, 0.5);
+        }
+        .preview-section {
+            background: white;
+            border-radius: 24px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+            min-height: 600px;
+        }
+        .preview-section h2 {
+            font-size: 2rem;
+            color: #333;
+            margin-bottom: 1.5rem;
+        }
+        .resume-preview {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 12px;
+            font-size: 0.95rem;
+            line-height: 1.8;
+            white-space: pre-wrap;
+        }
+        .resume-preview h3 {
+            color: #f093fb;
+            border-bottom: 2px solid #f093fb;
+            padding-bottom: 0.5rem;
+            margin: 1.5rem 0 1rem;
+        }
+        .resume-preview strong {
+            color: #333;
+        }
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 3rem;
+        }
+        .loading.active { display: block; }
+        .loading-message {
+            color: #999;
+            font-weight: 600;
+        }
+        .spinner {
+            width: 60px;
+            height: 60px;
+            border: 6px solid #f0f0f0;
+            border-top-color: #f093fb;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1.5rem;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        .download-btn {
+            width: 100%;
+            padding: 1.2rem;
+            background: #43e97b;
+            border: none;
+            border-radius: 10px;
+            color: white;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 1rem;
+            transition: all 0.3s ease;
+        }
+        .download-btn:hover {
+            background: #38d170;
+            transform: translateY(-2px);
+        }
+        .tips {
+            background: rgba(67, 233, 123, 0.1);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border-right: 4px solid #43e97b;
+            margin-top: 1.5rem;
+        }
+        .tips h4 {
+            color: #43e97b;
+            margin-bottom: 0.8rem;
+        }
+        .tips ul {
+            margin-right: 1.5rem;
+            color: #666;
+        }
+        .tips li {
+            margin-bottom: 0.5rem;
+        }
+        .empty-state-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+        #emptyState {
+            text-align: center;
+            padding: 5rem 2rem;
+            color: #999;
+        }
+        #resumeOutput {
+            display: none;
+        }
+        #resumeOutput.visible {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <nav class="top-nav">
+        <div class="nav-brand">
+            <span>🚀</span>
+            <span>ASK<span class="accent-red">_</span>tech</span>
+        </div>
+        <button class="back-btn" onclick="sessionStorage.setItem('scrollToTop', 'true'); window.location.href='/home'">← العودة للرئيسية</button>
+    </nav>
+
+    <div class="container">
+        <div class="hero">
+            <div class="hero-icon">📝</div>
+            <h1>بناء السيرة الذاتية الذكي</h1>
+            <h1>CV_ Builder - ASK_Tech</h1>
+            <p>أنشئ سيرتك الذاتية الاحترافية بمساعدة الذكاء الاصطناعي</p>
+        </div>
+
+        <div class="two-column">
+            <div class="form-section">
+                <h2>📋 معلوماتك الشخصية</h2>
+                
+                <div class="input-group">
+                    <label>الاسم الكامل</label>
+                    <input type="text" id="fullName" placeholder="محمد أحمد علي" />
+                </div>
+
+                <div class="input-group">
+                    <label>المسمى الوظيفي المستهدف</label>
+                    <input type="text" id="targetJob" placeholder="مهندس برمجيات" />
+                </div>
+
+                <div class="input-group">
+                    <label>المؤهل العلمي</label>
+                    <input type="text" id="education" placeholder="بكالوريوس علوم حاسب - جامعة الملك سعود" />
+                </div>
+
+                <div class="input-group">
+                    <label>سنوات الخبرة</label>
+                    <select id="experience" title="سنوات الخبرة">
+                        <option value="0-1">أقل من سنة</option>
+                        <option value="1-3">1-3 سنوات</option>
+                        <option value="3-5">3-5 سنوات</option>
+                        <option value="5-10">5-10 سنوات</option>
+                        <option value="10+">أكثر من 10 سنوات</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label>المهارات الرئيسية (افصلها بفاصلة)</label>
+                    <textarea id="skills" placeholder="Python, JavaScript, React, SQL, Git"></textarea>
+                </div>
+
+                <div class="input-group">
+                    <label>الخبرات الوظيفية (اختصار)</label>
+                    <textarea id="workHistory" placeholder="مطور في شركة XYZ (2020-2023): عملت على تطوير تطبيقات ويب باستخدام React و Node.js"></textarea>
+                </div>
+
+                <div class="input-group">
+                    <label>الإنجازات البارزة</label>
+                    <textarea id="achievements" placeholder="تطوير نظام إدارة عملاء ساهم في زيادة الكفاءة 40%"></textarea>
+                </div>
+
+               <button id="menuResumeBuilder" class="generate-btn">✨ إنشاء السيرة الذاتية</button>
+
+
+                <div class="tips">
+                    <h4>💡 نصائح سريعة</h4>
+                    <ul>
+                        <li>كن محدداً في وصف خبراتك ومهاراتك</li>
+                        <li>اذكر أرقام وإنجازات قابلة للقياس</li>
+                        <li>ركز على المهارات المطلوبة للوظيفة المستهدفة</li>
+                        <li>استخدم كلمات مفتاحية من مجال عملك</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="preview-section">
+                    <div class="loading-message">جارٍ إنشاء سيرتك الذاتية...</div>
+                
+                <div class="loading" id="loading">
+                    <div class="spinner"></div>
+                    <div class="loading-message">جارٍ إنشاء سيرتك الذاتية...</div>
+                </div>
+
+                <div id="emptyState">
+                    <div class="empty-state-icon">📄</div>
+                    <p>املأ النموذج واضغط "إنشاء السيرة الذاتية"<br/>لمشاهدة النتيجة هنا</p>
+                </div>
+
+                <div id="resumeOutput">
+                    <div class="resume-preview" id="resumePreview"></div>
+                    <button class="download-btn" onclick="downloadResume()">📥 تحميل كملف نصي</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let generatedResume = '';
+
+        async function clearServerHistory() {
+            try {
+                const token = localStorage.getItem('access_token');
+                await fetch('/api/history', {
+                    method: 'DELETE',
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+            } catch (error) {
+                console.error('Error clearing history:', error);
+            }
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            // Check if this is the first load of this page
+            const pageKey = 'resumebuilder_loaded';
+            if (!sessionStorage.getItem(pageKey)) {
+                // Mark as loaded and refresh to clear everything
+                sessionStorage.setItem(pageKey, 'true');
+                location.reload();
+            } else {
+                // Clear server history on subsequent loads
+                clearServerHistory();
+            }
+        });
+
+        async function generateResume() {
+            const fullName = document.getElementById('fullName').value;
+            const targetJob = document.getElementById('targetJob').value;
+            const education = document.getElementById('education').value;
+            const experience = document.getElementById('experience').value;
+            const skills = document.getElementById('skills').value;
+            const workHistory = document.getElementById('workHistory').value;
+            const achievements = document.getElementById('achievements').value;
+
+            if (!fullName || !targetJob) {
+                alert('الرجاء إدخال الاسم والمسمى الوظيفي على الأقل');
+                return;
+            }
+
+            document.getElementById('emptyState').style.display = 'none';
+            document.getElementById('resumeOutput').classList.remove('visible');
+            document.getElementById('loading').classList.add('active');
+
+            try {
+                const token = localStorage.getItem('access_token');
+                const prompt = `أنت خبير في كتابة السير الذاتية التقنية الاحترافية. اكتب سيرة ذاتية تقنية مفصلة باللغة العربية (مع استخدام المصطلحات التقنية بالإنجليزية) بناءً على المعلومات التالية:
+
+الاسم: ${fullName}
+الوظيفة المستهدفة: ${targetJob}
+المؤهل العلمي: ${education || 'غير محدد'}
+سنوات الخبرة: ${experience}
+المهارات: ${skills || 'غير محدد'}
+الخبرات الوظيفية: ${workHistory || 'غير محدد'}
+الإنجازات: ${achievements || 'غير محدد'}
+
+اكتب السيرة الذاتية بالتنسيق التالي:
+
+═══════════════════════════════════════
+${fullName}
+${targetJob}
+═══════════════════════════════════════
+
+📧 البريد الإلكتروني | 📱 الهاتف | 💼 LinkedIn
+
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
+🎯 الملخص المهني
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
+
+اكتب ملخص مهني تقني من 3-4 نقاط بالتفصيل مع ذكر:
+• التقنيات والأدوات المحددة (مثل: Python, React.js, Docker, AWS)
+• سنوات الخبرة والتخصص
+• إنجازات رئيسية بأرقام محددة
+
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
+💼 الخبرات الوظيفية
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
+
+لكل وظيفة، اذكر:
+• المسمى الوظيفي | اسم الشركة
+• الفترة الزمنية
+• 5-6 نقاط تقنية تفصيلية مع ذكر التقنيات المستخدمة
+• إنجازات قابلة للقياس بالأرقام
+
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
+🛠️ المهارات التقنية
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
+
+صنف المهارات حسب:
+• لغات البرمجة: (مع الإصدارات إن أمكن)
+• الأطر والمكتبات: 
+• قواعد البيانات:
+• الأدوات والتقنيات:
+• المنهجيات:
+
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
+🎓 التعليم
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
+
+• الدرجة العلمية والتخصص
+• اسم الجامعة وسنة التخرج
+• المشاريع الأكاديمية ذات الصلة
+
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
+🏆 الإنجازات والشهادات
+▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬
+
+• الشهادات التقنية المعتمدة
+• الإنجازات البارزة
+• المساهمات التقنية (Open Source, منشورات، براءات اختراع)
+
+اكتب السيرة الذاتية كاملة الآن بتفاصيل تقنية محددة!`;
+
+                const response = await fetch('/api/chat', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: JSON.stringify({ message: prompt, use_nim: false })
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                const data = await response.json();
+                console.log('API Response:', data);
+
+                if (!data.response) {
+                    throw new Error('لم يتم استلام استجابة من الخادم');
+                }
+                generatedResume = data.response;
+
+                document.getElementById('resumePreview').textContent = generatedResume;
+                document.getElementById('loading').classList.remove('active');
+                document.getElementById('resumeOutput').classList.add('visible');
+
+            } catch (error) {
+                console.error('Error:', error);
+                alert('حدث خطأ. الرجاء المحاولة مرة أخرى.');
+                document.getElementById('loading').classList.remove('active');
+                document.getElementById('emptyState').style.display = 'block';
+            }
+        }
+
+        function downloadResume() {
+            const fullName = document.getElementById('fullName').value || 'السيرة_الذاتية';
+            const blob = new Blob([generatedResume], { type: 'text/plain;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `${fullName.replace(/\s+/g, '_')}_CV.txt`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+    </script>
+</body>
+</html>

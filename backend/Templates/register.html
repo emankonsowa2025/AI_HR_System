@@ -1,0 +1,475 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>إنشاء حساب - AskTech</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+      }
+
+      .auth-container {
+        width: 100%;
+        max-width: 450px;
+        background: white;
+        border-radius: 20px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        padding: 40px;
+      }
+
+      h1 {
+        color: #667eea;
+        margin-bottom: 10px;
+        font-size: 2rem;
+        text-align: center;
+      }
+
+      .subtitle {
+        text-align: center;
+        color: #666;
+        margin-bottom: 30px;
+        font-size: 0.95rem;
+      }
+
+      .language-toggle {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+
+      .language-toggle button {
+        background: none;
+        border: 2px solid #667eea;
+        color: #667eea;
+        padding: 6px 16px;
+        border-radius: 20px;
+        cursor: pointer;
+        font-size: 0.85rem;
+        font-weight: 600;
+        transition: all 0.3s;
+      }
+
+      .language-toggle button:hover {
+        background: #667eea;
+        color: white;
+      }
+
+      .form-group {
+        margin-bottom: 20px;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 8px;
+        color: #333;
+        font-weight: 600;
+        font-size: 0.9rem;
+      }
+
+      input {
+        width: 100%;
+        padding: 12px 16px;
+        border: 2px solid #e0e0e0;
+        border-radius: 10px;
+        font-size: 1rem;
+        font-family: inherit;
+        transition: border-color 0.3s;
+      }
+
+      input:focus {
+        outline: none;
+        border-color: #667eea;
+      }
+
+      .error {
+        color: #e74c3c;
+        font-size: 0.85rem;
+        margin-top: 5px;
+        display: none;
+      }
+
+      .error.show {
+        display: block;
+      }
+
+      .submit-btn {
+        width: 100%;
+        padding: 14px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        border: none;
+        border-radius: 10px;
+        font-size: 1.1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s;
+        margin-top: 10px;
+      }
+
+      .submit-btn:hover:not(:disabled) {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+      }
+
+      .submit-btn:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+      }
+
+      .divider {
+        text-align: center;
+        margin: 25px 0;
+        color: #999;
+        font-size: 0.9rem;
+      }
+
+      .link {
+        text-align: center;
+        margin-top: 20px;
+      }
+
+      .link a {
+        color: #667eea;
+        text-decoration: none;
+        font-weight: 600;
+      }
+
+      .link a:hover {
+        text-decoration: underline;
+      }
+
+      /* English (LTR) styles */
+      html[dir="ltr"] {
+        direction: ltr;
+      }
+
+      .password-strength {
+        margin-top: 8px;
+        font-size: 0.85rem;
+      }
+
+      .strength-bar {
+        height: 4px;
+        background: #e0e0e0;
+        border-radius: 2px;
+        margin-top: 5px;
+        overflow: hidden;
+      }
+
+      .strength-fill {
+        height: 100%;
+        width: 0%;
+        transition: all 0.3s;
+      }
+
+      .strength-weak { background: #e74c3c; width: 33%; }
+      .strength-medium { background: #f39c12; width: 66%; }
+      .strength-strong { background: #27ae60; width: 100%; }
+    </style>
+  </head>
+  <body>
+    <div class="auth-container">
+      <h1 id="title">إنشاء حساب جديد 🚀</h1>
+      <p class="subtitle" id="subtitle">انضم إلى AskTech اليوم</p>
+
+      <div class="language-toggle">
+        <button type="button" id="langToggle">Switch to English</button>
+      </div>
+
+      <form id="registerForm">
+        <div class="form-group">
+          <label for="email" id="emailLabel">البريد الإلكتروني</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            required
+            autocomplete="email"
+          />
+          <div class="error" id="emailError">الرجاء إدخال بريد إلكتروني صحيح</div>
+        </div>
+
+        <div class="form-group">
+          <label for="username" id="usernameLabel">اسم المستخدم</label>
+          <input
+            type="text"
+            id="username"
+            name="username"
+            required
+            autocomplete="username"
+            minlength="3"
+          />
+          <div class="error" id="usernameError">اسم المستخدم يجب أن يكون 3 أحرف على الأقل</div>
+        </div>
+
+        <div class="form-group">
+          <label for="password" id="passwordLabel">كلمة المرور</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            required
+            autocomplete="new-password"
+            minlength="6"
+          />
+          <div class="password-strength">
+            <div class="strength-bar">
+              <div class="strength-fill" id="strengthFill"></div>
+            </div>
+            <span id="strengthText"></span>
+          </div>
+          <div class="error" id="passwordError">كلمة المرور يجب أن تكون 6 أحرف على الأقل</div>
+        </div>
+
+        <div class="form-group">
+          <label for="confirmPassword" id="confirmPasswordLabel">تأكيد كلمة المرور</label>
+          <input
+            type="password"
+            id="confirmPassword"
+            name="confirmPassword"
+            required
+            autocomplete="new-password"
+          />
+          <div class="error" id="confirmPasswordError">كلمتا المرور غير متطابقتين</div>
+        </div>
+
+        <div class="error" id="formError"></div>
+
+        <button type="submit" class="submit-btn" id="submitBtn">
+          إنشاء الحساب
+        </button>
+      </form>
+
+      <div class="divider" id="divider">أو</div>
+
+      <div class="link">
+        <span id="haveAccountText">لديك حساب بالفعل؟</span>
+        <a href="/login" id="loginLink">تسجيل الدخول</a>
+      </div>
+    </div>
+
+    <script>
+      const translations = {
+        ar: {
+          title: 'إنشاء حساب جديد 🚀',
+          subtitle: 'انضم إلى AskTech اليوم',
+          langToggle: 'Switch to English',
+          emailLabel: 'البريد الإلكتروني',
+          usernameLabel: 'اسم المستخدم',
+          passwordLabel: 'كلمة المرور',
+          confirmPasswordLabel: 'تأكيد كلمة المرور',
+          submitBtn: 'إنشاء الحساب',
+          divider: 'أو',
+          haveAccountText: 'لديك حساب بالفعل؟',
+          loginLink: 'تسجيل الدخول',
+          emailError: 'الرجاء إدخال بريد إلكتروني صحيح',
+          usernameError: 'اسم المستخدم يجب أن يكون 3 أحرف على الأقل',
+          passwordError: 'كلمة المرور يجب أن تكون 6 أحرف على الأقل',
+          confirmPasswordError: 'كلمتا المرور غير متطابقتين',
+          strengthWeak: 'ضعيفة',
+          strengthMedium: 'متوسطة',
+          strengthStrong: 'قوية',
+          emailTaken: 'البريد الإلكتروني مستخدم بالفعل',
+          usernameTaken: 'اسم المستخدم محجوز',
+          serverError: 'حدث خطأ في الخادم، حاول مرة أخرى'
+        },
+        en: {
+          title: 'Create New Account 🚀',
+          subtitle: 'Join AskTech today',
+          langToggle: 'التبديل للعربية',
+          emailLabel: 'Email',
+          usernameLabel: 'Username',
+          passwordLabel: 'Password',
+          confirmPasswordLabel: 'Confirm Password',
+          submitBtn: 'Create Account',
+          divider: 'or',
+          haveAccountText: 'Already have an account?',
+          loginLink: 'Login',
+          emailError: 'Please enter a valid email',
+          usernameError: 'Username must be at least 3 characters',
+          passwordError: 'Password must be at least 6 characters',
+          confirmPasswordError: 'Passwords do not match',
+          strengthWeak: 'Weak',
+          strengthMedium: 'Medium',
+          strengthStrong: 'Strong',
+          emailTaken: 'Email already registered',
+          usernameTaken: 'Username already taken',
+          serverError: 'Server error, please try again'
+        }
+      };
+
+      let currentLang = 'ar';
+
+      // Language toggle
+      document.getElementById('langToggle').addEventListener('click', () => {
+        currentLang = currentLang === 'ar' ? 'en' : 'ar';
+        const html = document.documentElement;
+        const t = translations[currentLang];
+
+        if (currentLang === 'ar') {
+          html.setAttribute('dir', 'rtl');
+          html.setAttribute('lang', 'ar');
+        } else {
+          html.setAttribute('dir', 'ltr');
+          html.setAttribute('lang', 'en');
+        }
+
+        document.getElementById('title').textContent = t.title;
+        document.getElementById('subtitle').textContent = t.subtitle;
+        document.getElementById('langToggle').textContent = t.langToggle;
+        document.getElementById('emailLabel').textContent = t.emailLabel;
+        document.getElementById('usernameLabel').textContent = t.usernameLabel;
+        document.getElementById('passwordLabel').textContent = t.passwordLabel;
+        document.getElementById('confirmPasswordLabel').textContent = t.confirmPasswordLabel;
+        document.getElementById('submitBtn').textContent = t.submitBtn;
+        document.getElementById('divider').textContent = t.divider;
+        document.getElementById('haveAccountText').textContent = t.haveAccountText;
+        document.getElementById('loginLink').textContent = t.loginLink;
+      });
+
+      // Password strength indicator
+      document.getElementById('password').addEventListener('input', (e) => {
+        const password = e.target.value;
+        const strengthFill = document.getElementById('strengthFill');
+        const strengthText = document.getElementById('strengthText');
+        const t = translations[currentLang];
+
+        if (password.length === 0) {
+          strengthFill.className = 'strength-fill';
+          strengthText.textContent = '';
+          return;
+        }
+
+        let strength = 0;
+        if (password.length >= 6) strength++;
+        if (password.length >= 10) strength++;
+        if (/[a-z]/.test(password) && /[A-Z]/.test(password)) strength++;
+        if (/[0-9]/.test(password)) strength++;
+        if (/[^a-zA-Z0-9]/.test(password)) strength++;
+
+        if (strength <= 2) {
+          strengthFill.className = 'strength-fill strength-weak';
+          strengthText.textContent = t.strengthWeak;
+          strengthText.style.color = '#e74c3c';
+        } else if (strength <= 3) {
+          strengthFill.className = 'strength-fill strength-medium';
+          strengthText.textContent = t.strengthMedium;
+          strengthText.style.color = '#f39c12';
+        } else {
+          strengthFill.className = 'strength-fill strength-strong';
+          strengthText.textContent = t.strengthStrong;
+          strengthText.style.color = '#27ae60';
+        }
+      });
+
+      // Form submission
+      document.getElementById('registerForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        // Clear previous errors
+        document.querySelectorAll('.error').forEach(el => el.classList.remove('show'));
+
+        const email = document.getElementById('email').value.trim();
+        const username = document.getElementById('username').value.trim();
+        const password = document.getElementById('password').value;
+        const confirmPassword = document.getElementById('confirmPassword').value;
+        const submitBtn = document.getElementById('submitBtn');
+        const formError = document.getElementById('formError');
+        const t = translations[currentLang];
+
+        // Validation
+        let isValid = true;
+
+        if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+          document.getElementById('emailError').textContent = t.emailError;
+          document.getElementById('emailError').classList.add('show');
+          isValid = false;
+        }
+
+        if (username.length < 3) {
+          document.getElementById('usernameError').textContent = t.usernameError;
+          document.getElementById('usernameError').classList.add('show');
+          isValid = false;
+        }
+
+        if (password.length < 6) {
+          document.getElementById('passwordError').textContent = t.passwordError;
+          document.getElementById('passwordError').classList.add('show');
+          isValid = false;
+        }
+
+        if (password !== confirmPassword) {
+          document.getElementById('confirmPasswordError').textContent = t.confirmPasswordError;
+          document.getElementById('confirmPasswordError').classList.add('show');
+          isValid = false;
+        }
+
+        if (!isValid) return;
+
+        // Submit
+        submitBtn.disabled = true;
+        submitBtn.textContent = currentLang === 'ar' ? 'جاري الإنشاء...' : 'Creating...';
+
+        try {
+          const response = await fetch('/api/auth/register', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ email, username, password })
+          });
+
+          const data = await response.json();
+
+          if (response.ok) {
+            // Store token in localStorage
+            localStorage.setItem('access_token', data.access_token);
+            localStorage.setItem('user', JSON.stringify(data.user));
+
+            console.log('✅ Registration successful, redirecting...');
+            
+            // Redirect to main authenticated page
+            window.location.replace('/home');
+          } else {
+            // Show error
+            let errorMessage = t.serverError;
+            if (data.detail) {
+              if (data.detail.includes('Email')) {
+                errorMessage = t.emailTaken;
+              } else if (data.detail.includes('Username')) {
+                errorMessage = t.usernameTaken;
+              } else {
+                errorMessage = data.detail;
+              }
+            }
+            formError.textContent = errorMessage;
+            formError.classList.add('show');
+          }
+        } catch (error) {
+          console.error('Registration error:', error);
+          formError.textContent = t.serverError;
+          formError.classList.add('show');
+        } finally {
+          submitBtn.disabled = false;
+          submitBtn.textContent = t.submitBtn;
+        }
+      });
+
+      // Don't auto-redirect - let user explicitly register
+      // Even if they have a token, show the registration form
+      console.log('Register page loaded');
+    </script>
+  </body>
+</html>

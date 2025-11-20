@@ -1,0 +1,759 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>استعد لمقابلة العمل - ASK_Tech</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&family=Cairo:wght@400;600;700;900&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Tajawal', 'Cairo', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background */
+        .background-orbs {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.6;
+            animation: floatOrb 20s infinite ease-in-out;
+        }
+
+        .orb-1 {
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(102, 126, 234, 0.8) 0%, transparent 70%);
+            top: -10%;
+            right: -10%;
+            animation-delay: 0s;
+        }
+
+        .orb-2 {
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(237, 100, 166, 0.6) 0%, transparent 70%);
+            bottom: -15%;
+            left: -15%;
+            animation-delay: 7s;
+        }
+
+        .orb-3 {
+            width: 350px;
+            height: 350px;
+            background: radial-gradient(circle, rgba(118, 75, 162, 0.7) 0%, transparent 70%);
+            top: 40%;
+            left: 50%;
+            animation-delay: 14s;
+        }
+
+        @keyframes floatOrb {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(50px, -50px) scale(1.1); }
+            66% { transform: translate(-30px, 30px) scale(0.9); }
+        }
+
+        /* Top Navigation */
+        .top-nav {
+            position: relative;
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.1);
+            -webkit-backdrop-filter: blur(20px);
+            backdrop-filter: blur(20px);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: white;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .nav-brand .underscore {
+            color: #f093fb;
+        }
+
+        .nav-brand-underscore {
+            color: #f093fb;
+        }
+
+        .back-btn-underscore {
+            color: #f093fb;
+        }
+
+        .back-btn {
+            padding: 0.75rem 1.5rem;
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 12px;
+            color: white;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+        }
+
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Main Container */
+        .container {
+            position: relative;
+            z-index: 10;
+            max-width: 1400px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+            flex: 1;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            margin-bottom: 3rem;
+            animation: fadeInDown 0.8s ease;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-icon {
+            font-size: 5rem;
+            margin-bottom: 1rem;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 900;
+            color: white;
+            margin-bottom: 1rem;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.9);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .search-section {
+            background: rgba(255, 255, 255, 0.15);
+            -webkit-backdrop-filter: blur(20px);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            padding: 2.5rem;
+            margin-bottom: 3rem;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            animation: fadeInUp 0.8s ease 0.2s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .search-section h2 {
+            color: white;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .input-group {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .input-wrapper {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .input-wrapper label {
+            display: block;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .input-wrapper input,
+        .input-wrapper select {
+            width: 100%;
+            padding: 1rem;
+            border-radius: 12px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.9);
+            font-size: 1rem;
+            font-family: 'Tajawal', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        .input-wrapper input:focus,
+        .input-wrapper select:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.2);
+        }
+
+        .generate-btn {
+            width: 100%;
+            padding: 1.2rem;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            border: none;
+            border-radius: 12px;
+            color: white;
+            font-size: 1.2rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(245, 87, 108, 0.4);
+        }
+
+        .generate-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(245, 87, 108, 0.6);
+        }
+
+        .generate-btn:active {
+            transform: translateY(-1px);
+        }
+
+        .questions-container {
+            background: rgba(255, 255, 255, 0.15);
+            -webkit-backdrop-filter: blur(20px);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            padding: 2.5rem;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            display: none;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .questions-container.active {
+            display: block;
+        }
+
+        .questions-container h2 {
+            color: white;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .question-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease;
+            animation: slideIn 0.5s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .question-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .question-number {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .question-text {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .answer-tips {
+            background: #f8f9fa;
+            border-right: 4px solid #667eea;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+        }
+
+        .answer-tips h4 {
+            color: #667eea;
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .answer-tips ul {
+            margin-right: 1.5rem;
+            color: #555;
+        }
+
+        .answer-tips li {
+            margin-bottom: 0.5rem;
+            line-height: 1.6;
+        }
+
+        /* Loading Spinner */
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 3rem;
+        }
+
+        .loading.active {
+            display: block;
+        }
+
+        .spinner {
+            width: 60px;
+            height: 60px;
+            border: 6px solid rgba(255, 255, 255, 0.3);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .loading-text {
+            color: white;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 1rem;
+            }
+
+            .top-nav {
+                padding: 1rem;
+            }
+
+            .search-section,
+            .questions-container {
+                padding: 1.5rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .input-group {
+                flex-direction: column;
+            }
+
+            .input-wrapper {
+                min-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+        <!-- Animated Background Orbs (from index.html) -->
+        <div class="background-orbs">
+            <div class="orb orb-purple"></div>
+            <div class="orb orb-pink"></div>
+            <div class="orb orb-blue"></div>
+        </div>
+
+        <!-- Top Navbar (from index.html) -->
+        <nav class="top-navbar">
+            <div class="navbar-content">
+                <div class="navbar-brand">
+                    <img src="/static/iti-logo.png" alt="ITI Logo" class="iti-logo-navbar">
+                    <span class="brand-logo">🚀</span>
+                    <span class="brand-name" dir="ltr">ASK_tech <span class="brand-ai">AI</span></span>
+                </div>
+                <div class="navbar-actions">
+                    <button class="back-btn eval-btn-large" onclick="window.location.href='/'" title="العودة للرئيسية">
+                        <span class="eval-icon eval-icon-large">🏠</span>
+                        <span class="eval-text eval-text-large">الصفحة الرئيسية</span>
+                    </button>
+                </div>
+            </div>
+        </nav>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Hero Section -->
+        <div class="hero">
+            <div class="hero-icon">🎯</div>
+            <h1>استعد لمقابلة العمل</h1>
+            <p>احصل على أسئلة مخصصة وإجابات نموذجية تساعدك على التألق في مقابلتك القادمة</p>
+        </div>
+
+        <!-- Job Search Section -->
+        <div class="search-section">
+            <h2>🔍 أدخل تفاصيل الوظيفة</h2>
+            <div class="input-group">
+                <div class="input-wrapper">
+                    <label>المسمى الوظيفي</label>
+                    <input type="text" id="jobTitle" placeholder="مثال: مطور برمجيات" />
+                </div>
+                <div class="input-wrapper">
+                    <label for="experienceLevel">مستوى الخبرة</label>
+                    <select id="experienceLevel">
+                        <option value="">اختر المستوى</option>
+                        <option value="junior">مبتدئ (0-2 سنة)</option>
+                        <option value="mid">متوسط (3-5 سنوات)</option>
+                        <option value="senior">متقدم (6+ سنوات)</option>
+                    </select>
+                </div>
+            </div>
+            <div class="input-group">
+                <div class="input-wrapper">
+                    <label>المجال / الصناعة</label>
+                    <input type="text" id="industry" placeholder="مثال: تقنية المعلومات" />
+                </div>
+                <div class="input-wrapper">
+                    <label>عدد الأسئلة المطلوبة</label>
+                    <select id="questionCount" title="عدد الأسئلة المطلوبة">
+                        <option value="5">5 أسئلة</option>
+                        <option value="10" selected>10 أسئلة</option>
+                        <option value="15">15 سؤال</option>
+                        <option value="20">20 سؤال</option>
+                    </select>
+                </div>
+            </div>
+            <button class="generate-btn" onclick="generateQuestions()">
+                ✨ توليد الأسئلة
+            </button>
+        </div>
+
+        <!-- Loading Spinner -->
+        <div class="loading" id="loading">
+            <div class="spinner"></div>
+            <div class="loading-text">جارِ توليد الأسئلة المخصصة لك...</div>
+        </div>
+
+        <!-- Questions Display -->
+        <div class="questions-container" id="questionsContainer">
+            <h2>📝 أسئلة المقابلة المقترحة</h2>
+            <div id="questionsList"></div>
+        </div>
+    </div>
+
+    <script>
+        // Clear server-side chat history on page load
+        async function clearServerHistory() {
+            try {
+                const token = localStorage.getItem('access_token');
+                await fetch('/api/history', {
+                    method: 'DELETE',
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+                console.log('Chat history cleared');
+            } catch (error) {
+                console.error('Error clearing history:', error);
+            }
+        }
+
+        // Clear history when page loads
+        window.addEventListener('DOMContentLoaded', () => {
+            // Check if this is the first load of this page
+            const pageKey = 'interview_loaded';
+            if (!sessionStorage.getItem(pageKey)) {
+                // Mark as loaded and refresh to clear everything
+                sessionStorage.setItem(pageKey, 'true');
+                location.reload();
+            } else {
+                // Clear server history on subsequent loads
+                clearServerHistory();
+            }
+        });
+
+        async function generateQuestions() {
+            const jobTitle = document.getElementById('jobTitle').value;
+            const experienceLevel = document.getElementById('experienceLevel').value;
+            const industry = document.getElementById('industry').value;
+            const questionCount = document.getElementById('questionCount').value;
+
+            if (!jobTitle || !experienceLevel) {
+                alert('الرجاء إدخال المسمى الوظيفي ومستوى الخبرة');
+                return;
+            }
+
+            // Show loading
+            document.getElementById('loading').classList.add('active');
+            document.getElementById('questionsContainer').classList.remove('active');
+
+            try {
+                const token = localStorage.getItem('access_token');
+                
+                if (!token) {
+                    alert('يجب تسجيل الدخول أولاً');
+                    window.location.href = '/login';
+                    return;
+                }
+                
+                console.log('Generating questions for:', jobTitle, experienceLevel);
+                const prompt = `You are an HR expert. Generate ${questionCount} interview questions in JSON format ONLY.
+
+Job Title: ${jobTitle}
+Experience Level: ${experienceLevel}
+Industry: ${industry || 'General'}
+
+CRITICAL: You MUST respond with ONLY valid JSON, nothing else. No explanations, no text before or after the JSON.
+
+Required JSON structure:
+{
+    "questions": [
+        {
+            "question": "Interview question in Arabic",
+            "tips": ["Tip 1 in Arabic", "Tip 2 in Arabic", "Tip 3 in Arabic"]
+        }
+    ]
+}
+
+Example for Software Engineer:
+{
+    "questions": [
+        {
+            "question": "أخبرني عن مشروع برمجي معقد عملت عليه وكيف تعاملت مع التحديات",
+            "tips": ["اذكر المشروع بوضوح", "وضح التحديات التقنية", "اشرح الحل والنتيجة"]
+        },
+        {
+            "question": "كيف تتعامل مع الأخطاء البرمجية (bugs) في الكود الخاص بك؟",
+            "tips": ["اشرح منهجية Debug", "اذكر أدوات التتبع", "وضح أهمية Testing"]
+        }
+    ]
+}
+
+NOW generate ${questionCount} questions for: ${jobTitle} (${experienceLevel})
+REMEMBER: JSON ONLY, no other text!`;
+
+                const response = await fetch('/api/chat', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: JSON.stringify({
+                        message: prompt,
+                        use_nim: false
+                    })
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                const data = await response.json();
+                console.log('API Response:', data);
+
+                if (!data.response) {
+                    throw new Error('لم يتم استلام استجابة من الخادم');
+                }
+                
+                // Parse the response
+                console.log('Response text:', data.response);
+                
+                let questionsData;
+                try {
+                    // Try to extract JSON from the response
+                    const jsonMatch = data.response.match(/\{[\s\S]*\}/);
+                    console.log('JSON Match:', jsonMatch);
+                    
+                    if (jsonMatch) {
+                        questionsData = JSON.parse(jsonMatch[0]);
+                        console.log('Parsed questions data:', questionsData);
+                    } else {
+                        // Fallback: parse text response
+                        console.log('No JSON found, parsing text');
+                        questionsData = parseTextResponse(data.response, questionCount);
+                    }
+                } catch (e) {
+                    console.error('Parse error:', e);
+                    questionsData = parseTextResponse(data.response, questionCount);
+                }
+
+                displayQuestions(questionsData.questions || questionsData);
+
+            } catch (error) {
+                console.error('Error:', error);
+                alert('حدث خطأ أثناء توليد الأسئلة. الرجاء المحاولة مرة أخرى.');
+            } finally {
+                document.getElementById('loading').classList.remove('active');
+            }
+        }
+
+        function parseTextResponse(text, count) {
+            console.log('Using text parser for questions');
+            const questions = [];
+            const lines = text.split('\n').filter(line => line.trim());
+            
+            let currentQuestion = null;
+            
+            for (let line of lines) {
+                line = line.trim();
+                
+                // Check if line is a question (starts with number or contains question mark)
+                if (line.match(/^\d+[\.\):-]/) || (line.includes('؟') && line.length > 20)) {
+                    if (currentQuestion) {
+                        questions.push(currentQuestion);
+                    }
+                    currentQuestion = {
+                        question: line.replace(/^\d+[\.\):-]\s*/, '').replace(/سؤال\s*\d*[:\-]\s*/i, ''),
+                        tips: []
+                    };
+                }
+                // Check for tips/advice (starts with -, •, or contains keywords)
+                else if (currentQuestion && line.length > 10) {
+                    if (line.match(/^[-•*]/) || line.includes('نصيحة') || line.includes('يجب') || line.includes('اذكر')) {
+                        currentQuestion.tips.push(line.replace(/^[-•*]\s*/, ''));
+                    }
+                }
+            }
+            
+            if (currentQuestion) {
+                questions.push(currentQuestion);
+            }
+
+            // If no questions found, create default ones
+            if (questions.length === 0) {
+                console.log('No questions parsed, creating defaults');
+                return [
+                    {
+                        question: "أخبرني عن نفسك وخبراتك المهنية",
+                        tips: ["ابدأ بمقدمة مختصرة", "اذكر خبراتك الرئيسية", "ركز على إنجازاتك"]
+                    },
+                    {
+                        question: "ما هي نقاط قوتك وكيف ستساعدك في هذه الوظيفة؟",
+                        tips: ["اختر نقاط قوة متعلقة بالوظيفة", "أعط أمثلة واقعية", "وضح كيف ستفيد الشركة"]
+                    },
+                    {
+                        question: "لماذا تريد العمل في هذه الشركة؟",
+                        tips: ["ابحث عن الشركة جيداً", "اذكر قيم الشركة", "اربط أهدافك بأهداف الشركة"]
+                    }
+                ].slice(0, parseInt(count));
+            }
+
+            console.log('Parsed questions:', questions.length);
+            return questions.slice(0, parseInt(count));
+        }
+
+        function displayQuestions(questions) {
+            const questionsList = document.getElementById('questionsList');
+            questionsList.innerHTML = '';
+
+            questions.forEach((q, index) => {
+                const card = document.createElement('div');
+                card.className = 'question-card';
+                card.style.animationDelay = `${index * 0.1}s`;
+                
+                const tips = Array.isArray(q.tips) ? q.tips : [];
+                
+                card.innerHTML = `
+                    <div class="question-number">سؤال ${index + 1}</div>
+                    <div class="question-text">${q.question}</div>
+                    ${tips.length > 0 ? `
+                        <div class="answer-tips">
+                            <h4>💡 نصائح للإجابة:</h4>
+                            <ul>
+                                ${tips.map(tip => `<li>${tip}</li>`).join('')}
+                            </ul>
+                        </div>
+                    ` : ''}
+                `;
+                
+                questionsList.appendChild(card);
+            });
+
+            document.getElementById('questionsContainer').classList.add('active');
+            document.getElementById('questionsContainer').scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>

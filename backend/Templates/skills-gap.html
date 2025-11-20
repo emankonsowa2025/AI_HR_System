@@ -1,0 +1,822 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>تحليل فجوة المهارات - ASK_Tech</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Tajawal', 'Cairo', sans-serif;
+            background: linear-gradient(135deg, #30cfd0 0%, #330867 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        .background-orbs {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(90px);
+            opacity: 0.6;
+            animation: floatOrb 26s infinite ease-in-out;
+        }
+
+        .orb-1 {
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(48, 207, 208, 0.8) 0%, transparent 70%);
+            top: -12%;
+            right: -10%;
+        }
+
+        .orb-2 {
+            width: 480px;
+            height: 480px;
+            background: radial-gradient(circle, rgba(51, 8, 103, 0.7) 0%, transparent 70%);
+            bottom: -15%;
+            left: -12%;
+            animation-delay: 9s;
+        }
+
+        .orb-3 {
+            width: 460px;
+            height: 460px;
+            background: radial-gradient(circle, rgba(100, 200, 255, 0.6) 0%, transparent 70%);
+            top: 45%;
+            left: 48%;
+            animation-delay: 18s;
+        }
+
+        @keyframes floatOrb {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(60px, -60px) scale(1.15); }
+            66% { transform: translate(-50px, 50px) scale(0.85); }
+        }
+
+        .top-nav {
+            position: relative;
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.1);
+            -webkit-backdrop-filter: blur(20px);
+            backdrop-filter: blur(20px);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: white;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .back-btn {
+            padding: 0.75rem 1.5rem;
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 12px;
+            color: white;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+        }
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+        }
+
+        .brand-underscore {
+            color: #30cfd0;
+        }
+
+        .container {
+            position: relative;
+            z-index: 10;
+            max-width: 1400px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+            flex: 1;
+        }
+
+        .hero {
+            text-align: center;
+            margin-bottom: 3rem;
+            animation: fadeInDown 0.8s ease;
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero-icon {
+            font-size: 5rem;
+            margin-bottom: 1rem;
+            animation: zoomInOut 3s infinite ease-in-out;
+        }
+
+        @keyframes zoomInOut {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.15); }
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 900;
+            color: white;
+            margin-bottom: 1rem;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.95);
+            max-width: 900px;
+            margin: 0 auto;
+        .input-section {
+            background: rgba(255, 255, 255, 0.15);
+            -webkit-backdrop-filter: blur(20px);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            padding: 2.5rem;
+            margin-bottom: 3rem;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            animation: fadeInUp 0.8s ease 0.2s both;
+        }
+            animation: fadeInUp 0.8s ease 0.2s both;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .input-section h2 {
+            color: white;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .input-wrapper {
+            margin-bottom: 1.5rem;
+        }
+
+        .input-wrapper label {
+            display: block;
+            color: white;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .input-wrapper input,
+        .input-wrapper textarea {
+            width: 100%;
+            padding: 1.2rem;
+            border-radius: 12px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.95);
+            font-size: 1rem;
+            font-family: 'Tajawal', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        .input-wrapper textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .input-wrapper input:focus,
+        .input-wrapper textarea:focus {
+            outline: none;
+            border-color: #30cfd0;
+            box-shadow: 0 0 0 4px rgba(48, 207, 208, 0.2);
+            background: white;
+        }
+
+        .analyze-btn {
+            width: 100%;
+            padding: 1.3rem;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            border: none;
+            border-radius: 12px;
+            color: white;
+            font-size: 1.3rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(240, 147, 251, 0.4);
+        }
+
+        .analyze-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(240, 147, 251, 0.6);
+        }
+
+        .results-container {
+            display: none;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .results-container.active {
+            display: block;
+        }
+
+        .gap-analysis {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .gap-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            animation: slideIn 0.6s ease;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .gap-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 3px solid #30cfd0;
+        }
+
+        .gap-icon {
+            font-size: 3rem;
+        }
+
+        .gap-title {
+            font-size: 2rem;
+            font-weight: 900;
+            color: #333;
+        }
+
+        .skill-item {
+            padding: 1.2rem;
+            margin-bottom: 1rem;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .skill-have {
+            background: linear-gradient(135deg, #43e97b15 0%, #38f9d715 100%);
+            border-right: 4px solid #43e97b;
+        }
+
+        .skill-need {
+            background: linear-gradient(135deg, #fa709a15 0%, #fee14015 100%);
+            border-right: 4px solid #fa709a;
+        }
+
+        .skill-item:hover {
+            transform: translateX(-5px);
+        }
+
+        .skill-name {
+            font-weight: 700;
+            color: #333;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .skill-level {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .progress-bar {
+            flex: 1;
+            height: 8px;
+            background: #e0e0e0;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #30cfd0 0%, #330867 100%);
+            transition: width 1s ease;
+        }
+
+        .learning-path {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin-top: 2rem;
+        }
+
+        .learning-path h3 {
+            font-size: 2rem;
+            color: #333;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .learning-step {
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #667eea10 0%, #764ba210 100%);
+            border-radius: 12px;
+            border-right: 4px solid #667eea;
+        }
+
+        .step-title {
+            font-weight: 700;
+            color: #667eea;
+            font-size: 1.2rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .step-description {
+            color: #555;
+            line-height: 1.7;
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 4rem;
+        }
+
+        .loading.active {
+            display: block;
+        }
+
+        .spinner {
+            width: 70px;
+            height: 70px;
+            border: 7px solid rgba(255, 255, 255, 0.3);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1.5rem;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .loading-text {
+            color: white;
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+
+        @media (max-width: 768px) {
+            .gap-analysis {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="background-orbs">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+    </div>
+
+            <span>ASK<span class="brand-underscore">_</span>tech</span>
+        <div class="nav-brand">
+            <span>🚀</span>
+            <span>ASK<span class="brand-underscore">_</span>tech</span>
+        </div>
+        <button class="back-btn" onclick="sessionStorage.setItem('scrollToTop', 'true'); window.location.href='/home'">
+            ← العودة للرئيسية
+        </button>
+    </nav>
+
+    <div class="container">
+        <div class="hero">
+            <div class="hero-icon">🎯</div>
+            <h1>تحليل فجوة المهارات</h1>
+             <h1>Skills Gap Analysis</h1>
+            <p>اكتشف الفرق بين مهاراتك الحالية والمهارات المطلوبة للوظيفة التي تطمح إليها</p>
+        </div>
+
+        <div class="input-section">
+            <h2>📊 قم بتحليل مهاراتك</h2>
+             <h2>📊Start Analyze your Skills</h2>
+            <div class="input-wrapper">
+                <label>الوظيفة المستهدفة</label>
+                <input type="text" id="targetJob" placeholder="مثال: مهندس Full Stack" />
+            </div>
+            <div class="input-wrapper">
+                <label>مهاراتك الحالية (افصل بفاصلة)</label>
+                <textarea id="currentSkills" placeholder="مثال: HTML, CSS, JavaScript, React, Node.js, MongoDB"></textarea>
+            </div>
+            <button class="analyze-btn" onclick="analyzeGap()">
+                🔍 تحليل الفجوة
+            </button>
+            <button class="interview-btn" onclick="window.location.href='/video-interview'">
+                🤖 مقابلة شخصية مع مساعدك الذكي
+            </button>
+            <script>
+            // Ensure interview button opens in a new tab
+            document.addEventListener('DOMContentLoaded', function() {
+                var btn = document.querySelector('.interview-btn');
+                if (btn) {
+                    btn.onclick = function(e) {
+                        e.preventDefault();
+                        window.open('/video-interview', '_blank');
+                    };
+                }
+            });
+            </script>
+            </button>
+        </div>
+
+        <div class="loading" id="loading">
+            <div class="spinner"></div>
+            <div class="loading-text">جارِ تحليل فجوة المهارات...</div>
+        </div>
+
+        <div class="results-container" id="resultsContainer">
+            <div class="gap-analysis">
+                <div class="gap-card">
+                    <div class="gap-header">
+                        <div class="gap-icon">✅</div>
+                        <div class="gap-title">مهارات تمتلكها</div>
+                    </div>
+                    <div id="haveSkills"></div>
+                </div>
+
+                <div class="gap-card">
+                    <div class="gap-header">
+                        <div class="gap-icon">📚</div>
+                        <div class="gap-title">مهارات تحتاج تعلمها</div>
+                    </div>
+                    <div id="needSkills"></div>
+                </div>
+            </div>
+
+            <div class="learning-path">
+                <h3>🗺️ خطة التعلم المقترحة</h3>
+                 <h3>🗺️ Suggestted Learning Plan</h3>
+                <div id="learningPlan"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        async function clearServerHistory() {
+            try {
+                const token = localStorage.getItem('access_token');
+                await fetch('/api/history', {
+                    method: 'DELETE',
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+            } catch (error) {
+                console.error('Error clearing history:', error);
+            }
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            // Check if this is the first load of this page
+            const pageKey = 'skillsgap_loaded';
+            if (!sessionStorage.getItem(pageKey)) {
+                // Mark as loaded and refresh to clear everything
+                sessionStorage.setItem(pageKey, 'true');
+                location.reload();
+            } else {
+                // Clear server history on subsequent loads
+                clearServerHistory();
+            }
+        });
+
+        async function analyzeGap() {
+            const targetJob = document.getElementById('targetJob').value;
+            const currentSkills = document.getElementById('currentSkills').value;
+
+            if (!targetJob || !currentSkills) {
+                alert('الرجاء إدخال الوظيفة المستهدفة ومهاراتك الحالية');
+                return;
+            }
+
+            document.getElementById('loading').classList.add('active');
+            document.getElementById('resultsContainer').classList.remove('active');
+
+            try {
+                const token = localStorage.getItem('access_token');
+                
+                if (!token) {
+                    alert('يجب تسجيل الدخول أولاً');
+                    window.location.href = '/login';
+                    return;
+                }
+                
+                console.log('Starting skills gap analysis...');
+                console.log('Target Job:', targetJob);
+                console.log('Current Skills:', currentSkills);
+                
+                const prompt = `أنت خبير في تحليل المهارات الوظيفية والتطوير المهني.
+
+قم بتحليل فجوة المهارات بناءً على المعطيات التالية:
+- الوظيفة المستهدفة: ${targetJob}
+- المهارات الحالية للمتقدم: ${currentSkills}
+
+المطلوب:
+1. تحليل المهارات الحالية وتقييم مدى ملاءمتها للوظيفة المستهدفة (قيّم كل مهارة من 100 وحدد مدى الصلة: عالية/متوسطة/منخفضة)
+2. تحديد المهارات المطلوبة التي ينقصها المتقدم للوصول للوظيفة (مع الأولوية: عالية/متوسطة/منخفضة والوقت المقدر للتعلم)
+3. وضع خطة تعلم مرتبة بالأولوية مع خطوات واضحة
+
+قدم الإجابة بصيغة JSON فقط بدون أي نص إضافي:
+{
+    "haveSkills": [
+        {"name": "اسم المهارة الموجودة", "level": 85, "relevance": "عالية"},
+        {"name": "مهارة أخرى", "level": 70, "relevance": "متوسطة"}
+    ],
+    "needSkills": [
+        {"name": "المهارة المطلوبة", "priority": "عالية", "estimatedTime": "شهر واحد"},
+        {"name": "مهارة ثانية", "priority": "متوسطة", "estimatedTime": "شهرين"}
+    ],
+    "learningPlan": [
+        {"step": "الخطوة 1", "description": "وصف تفصيلي للخطوة الأولى", "duration": "أسبوعين"},
+        {"step": "الخطوة 2", "description": "وصف الخطوة الثانية", "duration": "شهر"}
+    ]
+}`;
+
+                const response = await fetch('/api/chat', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: JSON.stringify({
+                        message: prompt,
+                        use_nim: false
+                    })
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                const data = await response.json();
+                console.log('API Response:', data);
+
+                if (!data.response) {
+                    throw new Error('لم يتم استلام استجابة من الخادم');
+                }
+                
+                console.log('Response text:', data.response);
+                
+                let analysisData;
+                try {
+                    const jsonMatch = data.response.match(/\{[\s\S]*\}/);
+                    console.log('JSON Match:', jsonMatch);
+                    
+                    if (jsonMatch) {
+                        analysisData = JSON.parse(jsonMatch[0]);
+                        console.log('Parsed JSON:', analysisData);
+                    } else {
+                        console.log('No JSON found, using text parser');
+                        analysisData = parseTextResponse(data.response, currentSkills, targetJob);
+                    }
+                } catch (e) {
+                    console.error('JSON Parse Error:', e);
+                    console.log('Falling back to text parser');
+                    analysisData = parseTextResponse(data.response, currentSkills, targetJob);
+                }
+
+                console.log('Final analysis data:', analysisData);
+                
+                if (!analysisData.haveSkills || !analysisData.needSkills || !analysisData.learningPlan) {
+                    console.warn('Missing required fields, adding defaults');
+                    analysisData = {
+                        haveSkills: analysisData.haveSkills || [],
+                        needSkills: analysisData.needSkills || [],
+                        learningPlan: analysisData.learningPlan || []
+                    };
+                }
+
+                displayResults(analysisData);
+
+            } catch (error) {
+                console.error('Error Details:', error);
+                let errorMessage = 'حدث خطأ أثناء التحليل.';
+                
+                if (error.message.includes('HTTP error')) {
+                    errorMessage += '\n\nخطأ في الاتصال بالخادم. تحقق من:\n- تسجيل الدخول\n- اتصال الإنترنت';
+                } else if (error.message.includes('استجابة')) {
+                    errorMessage += '\n\nلم يتم استلام رد من الخادم.';
+                } else {
+                    errorMessage += `\n\nتفاصيل: ${error.message}`;
+                }
+                
+                alert(errorMessage);
+            } finally {
+                document.getElementById('loading').classList.remove('active');
+            }
+        }
+
+        function parseTextResponse(text, currentSkills, targetJob) {
+            console.log('Parsing text response for:', targetJob);
+            
+            const lines = text.split('\n').filter(line => line.trim());
+            const skillsList = currentSkills.split(/[،,]/).map(s => s.trim()).filter(s => s);
+            
+            // Extract have skills from response
+            const haveSkills = [];
+            let inHaveSection = false;
+            
+            for (let line of lines) {
+                if (line.match(/المهارات الموجودة|المهارات الحالية|current skills|have skills/i)) {
+                    inHaveSection = true;
+                    continue;
+                }
+                if (line.match(/المهارات المطلوبة|المهارات الناقصة|need skills|required skills/i)) {
+                    inHaveSection = false;
+                }
+                
+                if (inHaveSection && line.trim()) {
+                    const cleanLine = line.replace(/^[-•*\d.)\s]+/, '').trim();
+                    if (cleanLine) {
+                        const levelMatch = cleanLine.match(/(\d+)%?/);
+                        const level = levelMatch ? parseInt(levelMatch[1]) : 70;
+                        const relevanceMatch = cleanLine.match(/عالية|متوسطة|منخفضة|high|medium|low/i);
+                        const relevance = relevanceMatch ? relevanceMatch[0] : 'متوسطة';
+                        
+                        haveSkills.push({
+                            name: cleanLine.split(/[:،,]/)[0].trim(),
+                            level: level,
+                            relevance: relevance
+                        });
+                    }
+                }
+            }
+            
+            // If no skills extracted, use current skills
+            if (haveSkills.length === 0) {
+                haveSkills.push(...skillsList.map(skill => ({
+                    name: skill,
+                    level: 70,
+                    relevance: "متوسطة"
+                })));
+            }
+            
+            // Extract needed skills
+            const needSkills = [];
+            let inNeedSection = false;
+            
+            for (let line of lines) {
+                if (line.match(/المهارات المطلوبة|المهارات الناقصة|need skills|required skills/i)) {
+                    inNeedSection = true;
+                    continue;
+                }
+                if (line.match(/خطة التعلم|learning plan|الخطة/i)) {
+                    inNeedSection = false;
+                }
+                
+                if (inNeedSection && line.trim()) {
+                    const cleanLine = line.replace(/^[-•*\d.)\s]+/, '').trim();
+                    if (cleanLine) {
+                        const priorityMatch = cleanLine.match(/عالية|متوسطة|منخفضة|high|medium|low/i);
+                        const priority = priorityMatch ? priorityMatch[0] : 'متوسطة';
+                        const timeMatch = cleanLine.match(/(\d+)\s*(شهر|أسبوع|week|month)/i);
+                        const estimatedTime = timeMatch ? timeMatch[0] : 'شهر واحد';
+                        
+                        needSkills.push({
+                            name: cleanLine.split(/[:،,]/)[0].trim(),
+                            priority: priority,
+                            estimatedTime: estimatedTime
+                        });
+                    }
+                }
+            }
+            
+            // Extract learning plan
+            const learningPlan = [];
+            let inPlanSection = false;
+            
+            for (let line of lines) {
+                if (line.match(/خطة التعلم|learning plan|الخطة|التوصيات/i)) {
+                    inPlanSection = true;
+                    continue;
+                }
+                
+                if (inPlanSection && line.trim()) {
+                    const cleanLine = line.replace(/^[-•*\d.)\s]+/, '').trim();
+                    if (cleanLine) {
+                        learningPlan.push({
+                            step: `الخطوة ${learningPlan.length + 1}`,
+                            description: cleanLine,
+                            duration: 'شهر'
+                        });
+                    }
+                }
+            }
+            
+            console.log('Extracted:', { haveSkills, needSkills, learningPlan });
+            
+            return {
+                haveSkills: haveSkills.length > 0 ? haveSkills : [{
+                    name: skillsList[0] || 'مهارة عامة',
+                    level: 70,
+                    relevance: 'متوسطة'
+                }],
+                needSkills: needSkills.length > 0 ? needSkills : [{
+                    name: 'مهارات تقنية متقدمة',
+                    priority: 'عالية',
+                    estimatedTime: 'شهر واحد'
+                }],
+                learningPlan: learningPlan.length > 0 ? learningPlan : [{
+                    step: 'الخطوة 1',
+                    description: 'ابدأ بتعلم الأساسيات المطلوبة للوظيفة',
+                    duration: 'شهر'
+                }]
+            };
+        }
+
+        function displayResults(data) {
+            // Display skills you have
+            const haveSkillsDiv = document.getElementById('haveSkills');
+            haveSkillsDiv.innerHTML = data.haveSkills.map(skill => `
+                <div class="skill-item skill-have">
+                    <div class="skill-name">${skill.name}</div>
+                    <div class="skill-level">
+                        <span>المستوى:</span>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: ${skill.level || 70}%"></div>
+                        </div>
+                        <span>${skill.level || 70}%</span>
+                    </div>
+                </div>
+            `).join('');
+
+            // Display skills you need
+            const needSkillsDiv = document.getElementById('needSkills');
+            needSkillsDiv.innerHTML = data.needSkills.map(skill => `
+                <div class="skill-item skill-need">
+                    <div class="skill-name">${skill.name}</div>
+                    <div style="color: #666; margin-top: 0.5rem;">
+                        <strong>الأولوية:</strong> ${skill.priority || 'متوسطة'} | 
+                        <strong>الوقت المقدر:</strong> ${skill.estimatedTime || 'شهر'}
+                    </div>
+                </div>
+            `).join('');
+
+            // Display learning plan
+            const learningPlanDiv = document.getElementById('learningPlan');
+            learningPlanDiv.innerHTML = data.learningPlan.map((step, index) => `
+                <div class="learning-step">
+                    <div class="step-title">${step.step || `الخطوة ${index + 1}`}</div>
+                    <div class="step-description">${step.description}</div>
+                    ${step.duration ? `<div style="color: #30cfd0; font-weight: 600; margin-top: 0.8rem;">⏱️ المدة: ${step.duration}</div>` : ''}
+                </div>
+            `).join('');
+
+            document.getElementById('resultsContainer').classList.add('active');
+            document.getElementById('resultsContainer').scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
